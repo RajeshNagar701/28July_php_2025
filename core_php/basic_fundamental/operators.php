@@ -9,7 +9,7 @@ Assignment operators    =     += -= *= /=  %=   $a=10;  $a+=10  $a=$a+10    $a-=
 Comparison operators    == === > < >= <= !=
 
 Increment/Decrement operators    ++    --  a=10 a++ echo 
-Logical operators   &&     ||     !
+Logical operators   &&     ||     !      
 String operators    .    .=
 Conditional assignment operators   (cond)?'if':'else';
 Array operators 
@@ -58,7 +58,7 @@ echo $b."<br>";
 
 // comparision operators   == > < >= <= ===
 
-
+/*
 $a=100;
 $b="100";
 
@@ -70,13 +70,13 @@ else
 {
 	echo "false";
 }
-
+*/
 
 /*
 $a=100;
 $b="100";
 
-if($a===$b) // check data type  & ans
+if($a===$b) // check data type  & value
 {
 	echo "true";
 }
@@ -113,18 +113,16 @@ else
 
 //String Operators   .   .=
 
-/*
+
 $a="Raj";
 echo "Hello" . $a . "<br>";
 
 $name="raj";
-$name.="Nagar";
-$name.=" N ";
-
+$name.=" nagar";
+$name.=" n";
 echo $name;
 
 
-*/
 
 // conditional operators / turnory 
 
@@ -145,8 +143,8 @@ else
 // turnory operator conditional( ? : )   (cond)? yes : No
 
 
-$age=18;
-echo $ans=($age>=18)? "Man" : "Child";  // codition ? "yes":"no";   ?:
+$age=17;
+echo ($age>=18)? "Men" : "Child";  // codition ? "yes":"no";   ?:
 
 
 ?>

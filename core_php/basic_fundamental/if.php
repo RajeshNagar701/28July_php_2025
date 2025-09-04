@@ -11,7 +11,6 @@ if(cond)
 	echo "cond is true"
 }	
 
-
 if()
 {
 	
@@ -19,7 +18,6 @@ if()
 {
 	
 }
-
 
 if elseif else
 nested if

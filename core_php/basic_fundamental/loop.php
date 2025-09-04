@@ -34,10 +34,10 @@ foreach()
 // While()
 	
 /*
-$i=10;
-while($i<=100)
-{
-	echo $i ."<br>";
+$i=1;
+while($i<=100){
+	
+	echo "<p>Rajesh Nagar</p>";
 	$i++;
 }
 */
@@ -56,14 +56,14 @@ for($i=50;$i<=100;$i++)
 
 //do while
 
-/*
+
 $i=1;
 do
 {
 	echo $i . "<br>";
 	$i++;
 }while($i>=10);
-*/
+
 
 
 
@@ -77,7 +77,7 @@ do
 /*
 for($a=1;$a<=100;$a++)
 {
-	if($a==50)
+	if($a==51)
 	{
 		break;
 	}
@@ -89,8 +89,6 @@ for($a=1;$a<=100;$a++)
 
 
 // continue
-
-
 for($a=1;$a<=10;$a++)
 {
 	if($a==7 || $a==9)  // || or    && and      ! not
