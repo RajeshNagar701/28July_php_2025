@@ -23,13 +23,13 @@ echo "Hello";
 // terminate all script  
 
 
-
+/*
 $a=10;
 $b=20;
 echo $a
 echo $b;
 echo "Hello";
-
+*/
 
 
 //3) warning  : if you include any non existing file than warning occures 

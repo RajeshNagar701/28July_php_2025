@@ -5,19 +5,20 @@
 
 // /*if file does not exits than include gives warning 
 
-include('include.php');
-include('include1.php');
-include('include1.php');
-echo "Morning";
-
-
-// file include only one time not again & again
 /*
-include_once('include1.php');
-include_once('include1.php');
-include_once('include1.php');
+include('include1.php');
+include('include1.php');
+include('include1.php');
 echo "Morning";
 */
+
+// file include only one time not again & again
+
+include_once('include.php');
+include_once('include1.php');
+include_once('include1.php');
+echo "Morning";
+
 
 
 
