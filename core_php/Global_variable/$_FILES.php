@@ -5,7 +5,17 @@
 <body>
 
 <!-- img upload / resume upload / file upload-->
-<!-- first add ti form tag enctype="multipart/form-data" -->
+<!-- 
+
+Normal input =  $_GET[]/$_POST[]/$_REQUEST[]
+
+FILE input : $_FILES['file1']['name'];
+
+
+first add ti form tag enctype="multipart/form-data"
+
+
+ -->
 
 <form action="" method="post" enctype="multipart/form-data">      <?  // make form with action on $_GET function?>
 	<p>Name: <input type="text" name="username"/></p>
@@ -17,19 +27,28 @@
 if(isset($_POST['submit']))
 {
 	echo $username=$_POST['username']."<br>";
-	// image upload
+	
+	echo $file1=$_FILES['file1']['name'];
+	
 	if($_FILES['file1']['size']>0)
 	{
-		echo $img=$_FILES['file1']['name'];
-			 
-			 $path='img/upload/'.$img; 	
-			 $dup_img=$_FILES['file1']['tmp_name'];
-			 move_uploaded_file($dup_img,$path);
+		$path="img/upload/".$file1;  // path where we upload img
+		$dup_file1=$_FILES['file1']['tmp_name']; // get duplicate file
+		move_uploaded_file($dup_file1,$path); // move dupl image in path
 	}
 	
 }
 
+
+
+session_start();
+echo $_SESSION['user'];
+
+echo $_COOKIE['user'];
+
 ?>
+
+
 
 
 

@@ -1,6 +1,6 @@
 <?php
 /*
-Sessioon is super global variable which sore value IN SERVER
+Sessioon is super global variable which store value IN SERVER
 Sessions are wonderful ways to pass variables.
 All you need to do is start a session by 
 session_start();Then all the variables you store within a 

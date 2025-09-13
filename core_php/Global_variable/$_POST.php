@@ -25,6 +25,10 @@ if(isset($_POST['submit']))
 	echo $age=$_POST['age'];
 }
 
+
+session_start();
+echo $_SESSION['user'];
+
 ?>
 
 
