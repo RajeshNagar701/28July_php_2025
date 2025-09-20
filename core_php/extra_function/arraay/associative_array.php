@@ -1,14 +1,14 @@
 <?php
-$asociate_arr=array("raj"=>"a","2"=>"b","3"=>"c");
-print_r($asociate_arr);
+$associate=array("id"=>"1","name"=>"rajesh","email"=>"raj@gmail.com");  // associate
+print_r($associate);
 echo "<br>";
 
 
-echo $asociate_arr['raj']. "<br>";
+echo $associate['email']. "<br>";
 
 
-foreach($asociate_arr as $string)
+foreach($associate as $string)
 {
-	echo $string ."<br>";
+	echo "<h1>" .$string ."<h1>";
 }
 ?>
