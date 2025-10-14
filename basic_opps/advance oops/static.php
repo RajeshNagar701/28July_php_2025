@@ -33,6 +33,7 @@ class abc
 	{
 		echo $this->simple_var; // normal var call by $this
 		echo abc::$my_static;
+		
 		//echo self::$my_static;  // foo::$my_static;
 	}
 }

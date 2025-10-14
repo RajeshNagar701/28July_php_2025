@@ -7,7 +7,6 @@ This word is can from Greek word poly and morphism.
 Poly means "many" and morphism means property which help 
 us to assign more than one property. 
 
-
 */
 
 //=> Overloading Same method name with different parameter, 

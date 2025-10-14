@@ -1,17 +1,13 @@
 <?php
 
 /*
- PHP  introduces the final keyword, which prevents child classes from 
+PHP  introduces the final keyword, which prevents child classes from 
 overriding a method by prefixing the definition with final. 
-If the class itself is
-being defined final then it cannot be extended.
-
-
+If the class itself is being defined final then it cannot be extended.
 */
-
 final class a
 {
-	 function test()
+	function test()
 	{
 		echo "This is final method";
 	}
