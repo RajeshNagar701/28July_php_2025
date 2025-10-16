@@ -48,7 +48,7 @@
 			
 			
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./index.html" aria-expanded="false">
+              <a class="sidebar-link" href="./dashboard" aria-expanded="false">
                 <i class="ti ti-atom"></i>
                 <span class="hide-menu">Dashboard</span>
               </a>
@@ -68,7 +68,7 @@
               <ul aria-expanded="false" class="collapse first-level">
                 <li class="sidebar-item">
                   <a class="sidebar-link justify-content-between"  
-                    href="add_categories.php">
+                    href="add_categories">
                     <div class="d-flex align-items-center gap-3">
                       <div class="round-16 d-flex align-items-center justify-content-center">
                         <i class="ti ti-circle"></i>
@@ -80,7 +80,7 @@
                 </li>
                 <li class="sidebar-item">
                   <a class="sidebar-link justify-content-between"  
-                    href="manage_categories.php">
+                    href="manage_categories">
                     <div class="d-flex align-items-center gap-3">
                       <div class="round-16 d-flex align-items-center justify-content-center">
                         <i class="ti ti-circle"></i>
@@ -107,7 +107,7 @@
               <ul aria-expanded="false" class="collapse first-level">
                 <li class="sidebar-item">
                   <a class="sidebar-link justify-content-between"  
-                    href="add_products.php">
+                    href="add_products">
                     <div class="d-flex align-items-center gap-3">
                       <div class="round-16 d-flex align-items-center justify-content-center">
                         <i class="ti ti-circle"></i>
@@ -119,7 +119,7 @@
                 </li>
                 <li class="sidebar-item">
                   <a class="sidebar-link justify-content-between"  
-                    href="manage_products.php">
+                    href="manage_products">
                     <div class="d-flex align-items-center gap-3">
                       <div class="round-16 d-flex align-items-center justify-content-center">
                         <i class="ti ti-circle"></i>
@@ -132,20 +132,20 @@
               </ul>
             </li>
 			<li class="sidebar-item">
-              <a class="sidebar-link" href="manage_contact.php" aria-expanded="false">
+              <a class="sidebar-link" href="manage_contact" aria-expanded="false">
                 <i class="ti ti-atom"></i>
                 <span class="hide-menu">Contact</span>
               </a>
             </li>
 			
 			<li class="sidebar-item">
-              <a class="sidebar-link" href="manage_customer.php" aria-expanded="false">
+              <a class="sidebar-link" href="manage_customer" aria-expanded="false">
                 <i class="ti ti-atom"></i>
                 <span class="hide-menu">Customer</span>
               </a>
             </li>
 			<li class="sidebar-item">
-              <a class="sidebar-link" href="manage_cart.php" aria-expanded="false">
+              <a class="sidebar-link" href="manage_cart" aria-expanded="false">
                 <i class="ti ti-atom"></i>
                 <span class="hide-menu">Cart Repport</span>
               </a>

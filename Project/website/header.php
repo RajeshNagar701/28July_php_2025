@@ -131,21 +131,21 @@
                 <div class="col-lg-12">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="<?php active('index.php')?>"><a href="./index.php">Home</a></li>
-                            <li class="<?php active('about.php')?>"><a href="./about.php">About</a></li>
-                            <li class="<?php active('shop.php')?>"><a href="./shop.php">Shop</a></li>
+                            <li class="<?php active('index')?>"><a href="./index">Home</a></li>
+                            <li class="<?php active('about')?>"><a href="./about">About</a></li>
+                            <li class="<?php active('shop')?>"><a href="./shop">Shop</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
-                                    <li class="<?php active('shop-details.php')?>"><a href="./shop-details.php">Shop Details</a></li>
-                                    <li class="<?php active('shoping-cart.php')?>"><a href="./shoping-cart.php">Shoping Cart</a></li>
-                                    <li class="<?php active('checkout.php')?>"><a href="./checkout.php">Check Out</a></li>
-                                    <li class="<?php active('wisslist.php')?>"><a href="./wisslist.php">Wisslist</a></li>
-                                    <li class="<?php active('Class.php')?>"><a href="./Class.php">Class</a></li>
-                                    <li class="<?php active('blog-details.php')?>"><a href="./blog-details.php">Blog Details</a></li>
+                                    <li class="<?php active('shop-details')?>"><a href="./shop-details">Shop Details</a></li>
+                                    <li class="<?php active('shoping-cart')?>"><a href="./shoping-cart">Shoping Cart</a></li>
+                                    <li class="<?php active('checkout')?>"><a href="./checkout">Check Out</a></li>
+                                    <li class="<?php active('wisslist')?>"><a href="./wisslist">Wisslist</a></li>
+                                    <li class="<?php active('Class')?>"><a href="./Class">Class</a></li>
+                                    <li class="<?php active('blog-details')?>"><a href="./blog-details">Blog Details</a></li>
                                 </ul>
                             </li>
-                            <li class="<?php active('blog.php')?>"><a href="./blog.php">Blog</a></li>
-                            <li class="<?php active('contact.php')?>"><a href="./contact.php">Contact</a></li>
+                            <li class="<?php active('blog')?>"><a href="./blog">Blog</a></li>
+                            <li class="<?php active('contact')?>"><a href="./contact">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
