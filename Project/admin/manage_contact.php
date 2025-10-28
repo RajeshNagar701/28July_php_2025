@@ -15,36 +15,32 @@ include_once('header.php');
 					<table class="table mb-0 text-nowrap varient-table align-middle fs-3">
 					  <thead>
 						<tr>
-						  <th scope="col" class="px-0 text-muted">
-							Contact Details
-						  </th>
-						  <th scope="col" class="px-0 text-muted">Categories Name</th>
-						  
-						  <th scope="col" class="px-0 text-muted">
-							Action
-						  </th>
+						  <th scope="col" class="px-0 text-muted">Id</th>
+						  <th scope="col" class="px-0 text-muted">Name</th>
+						  <th scope="col" class="px-0 text-muted">Email</th>
+						  <th scope="col" class="px-0 text-muted">Comment</th>
+						  <th scope="col" class="px-0 text-muted">Action</th>
 						</tr>
 					  </thead>
 					  
 					  <tbody>
+					  <?php
+					  foreach($cont_arr as $value)
+					  {
+					  ?>
 						<tr>
-						  <td class="px-0">
-							<div class="d-flex align-items-center">
-							  <img src="./assets/images/profile/user-3.jpg" class="rounded-circle" width="40"
-								alt="flexy" />
-							  <div class="ms-3">
-								<h6 class="mb-0 fw-bolder">1</h6>
-							  </div>
-							</div>
-						  </td>
-						  <td class="px-0">Birthday Cake</td>
-						
+						  <td scope="col" class="px-0"><?php echo $value->id?></td>
+						  <td scope="col" class="px-0"><?php echo $value->name?></td>
+						  <td scope="col" class="px-0"><?php echo $value->email?></td>
+						  <td scope="col" class="px-0"><?php echo $value->comment?></td>
 						  <td class="px-0">
 							<a href="" class="btn btn-primary">Edit</a>
 							<a href="" class="btn btn-danger">Delete</a>
 						  </td>
 						</tr>
-						
+					<?php
+					  }
+					?>	
 					  </tbody>
 					</table>
 				  </div>

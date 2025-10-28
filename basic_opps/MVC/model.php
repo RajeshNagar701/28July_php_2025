@@ -16,7 +16,8 @@ individually into consideration. These aspects of the application are:
 Let us discuss the three components of MVC in brief:
 
 Model: The Model encloses the clean application related data. 
-		But the model does not deal with any logic about how to present the data.
+		But the model does not deal with any logic about how to present 
+		the data.
 		
 		MODEL CONNECTED WITH Database + Logic (crud ins/ipd/del/sel)
 	
@@ -58,5 +59,7 @@ class model{
 }
 
 $obj=new model;
-
+$obj->select('feedback');
+$obj->select('customer');
+$obj->select('contact');
 ?>

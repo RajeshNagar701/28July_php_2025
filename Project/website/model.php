@@ -11,8 +11,15 @@ class model{
 	}
 	
 	function select($tbl){
-		echo $sel="select * from $tbl";
-	}
+		
+		$sel="select * from $tbl";  // query generate
+		$run=$this->conn->query($sel);    // query run of db
+		while($fetch=$run->fetch_object())           // fetch all data which query generate
+		{
+			$arr[]=$fetch;
+		}
+		return $arr;
+	} 
 	
 	function insert(){
 		

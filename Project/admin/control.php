@@ -27,6 +27,7 @@ class control extends model{  //  step 2 model class extends in control for func
 			break;
 			
 			case '/manage_categories':
+				$cate_arr=$this->select('categories');
 				include_once('manage_categories.php');
 			break;
 			
@@ -35,14 +36,17 @@ class control extends model{  //  step 2 model class extends in control for func
 			break;
 			
 			case '/manage_products':
+				$prod_arr=$this->select('products');
 				include_once('manage_products.php');
 			break;
 				
 			case '/manage_contact':
+				$cont_arr=$this->select('contacts');
 				include_once('manage_contact.php');
 			break;
 			
 			case '/manage_customer':
+				$cust_arr=$this->select('customers');
 				include_once('manage_customer.php');
 			break;
 			
