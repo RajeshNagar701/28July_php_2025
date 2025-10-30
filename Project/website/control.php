@@ -63,7 +63,26 @@ class control extends model{  //  step 2 model class extends in control for func
 			break;
 			
 			case '/contact':
-				echo "hello";
+				
+				if(isset($_REQUEST['submit']))
+				{
+					$name=$_REQUEST['name'];
+					$email=$_REQUEST['email'];
+					$comment=$_REQUEST['comment'];
+					
+					$arr=array("name"=>$name,"email"=>$email,"comment"=>$comment);
+					
+					$run=$this->insert('contacts',$arr);
+					if($run)
+					{
+						echo "Contact Submitted Success";
+					}
+					else
+					{
+						echo "nOPT Success";
+					}	
+					
+				}
 				include_once('contact.php');
 			break;
 		}

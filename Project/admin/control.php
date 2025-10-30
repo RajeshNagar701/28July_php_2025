@@ -23,6 +23,32 @@ class control extends model{  //  step 2 model class extends in control for func
 			break;
 			
 			case '/add_categories':
+				
+				if(isset($_REQUEST['submit']))
+				{
+					$cate_name=$_REQUEST['cate_name'];
+					
+					$cate_image=$_FILES['cate_image']['name'];
+					if($_FILES['cate_image']['size']>0)
+					{
+						$path="assets/images/categories/".$cate_image;  // path where we upload img
+						$dup_file1=$_FILES['cate_image']['tmp_name']; // get duplicate file
+						move_uploaded_file($dup_file1,$path); // move dupl image in path
+					}
+					
+					$arr=array("cate_name"=>$cate_name,"cate_image"=>$cate_image);
+					
+					$run=$this->insert('categories',$arr);
+					if($run)
+					{
+						echo "categories Inserted Success";
+					}
+					else
+					{
+						echo "nOPT Success";
+					}	
+					
+				}
 				include_once('add_categories.php');
 			break;
 			
@@ -32,6 +58,35 @@ class control extends model{  //  step 2 model class extends in control for func
 			break;
 			
 			case '/add_products':
+				if(isset($_REQUEST['submit']))
+				{
+					$cate_id=$_REQUEST['cate_id'];
+					$title=$_REQUEST['title'];
+					$price=$_REQUEST['price'];
+					$description=$_REQUEST['description'];
+					
+					$image=$_FILES['image']['name'];
+					if($_FILES['image']['size']>0)
+					{
+						$path="assets/images/products/".$image;  // path where we upload img
+						$dup_file1=$_FILES['image']['tmp_name']; // get duplicate file
+						move_uploaded_file($dup_file1,$path); // move dupl image in path
+					}
+					
+					$arr=array("cate_id"=>$cate_id,"title"=>$title,"price"=>$price,"description"=>$description,"image"=>$image);
+					
+					$run=$this->insert('products',$arr);
+					if($run)
+					{
+						echo "products Inserted Success";
+					}
+					else
+					{
+						echo "nOPT Success";
+					}	
+					
+				}
+				$cate_arr=$this->select('categories');
 				include_once('add_products.php');
 			break;
 			

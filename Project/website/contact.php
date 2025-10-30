@@ -93,17 +93,17 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="contact__form">
-                        <form action="#">
+                        <form action="" method="post">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Name">
+                                    <input type="text" name="name" placeholder="Name">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Email">
+                                    <input type="email" name="email" placeholder="Email">
                                 </div>
                                 <div class="col-lg-12">
-                                    <textarea placeholder="Message"></textarea>
-                                    <button type="submit" class="site-btn">Send Us</button>
+                                    <textarea name="comment" placeholder="Message"></textarea>
+                                    <button type="submit" name="submit" class="site-btn">Send Us</button>
                                 </div>
                             </div>
                         </form>

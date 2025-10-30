@@ -31,8 +31,13 @@ include_once('header.php');
 					  
 						<tr>
 						  <td scope="col" class="px-0"><?php echo $value->cate_id?></td>
-						  <td scope="col" class="px-0"><?php echo $value->cate_name?></td>
-						  <td scope="col" class="px-0"><?php echo $value->cate_image?></td>
+						  <td scope="col" class="px-0">
+							<?php echo $value->cate_name?>
+						  </td>
+						  <td scope="col" class="px-0">
+							<img width="100px" src="assets/images/categories/<?php echo $value->cate_image?>" />
+						  </td>
+	
 						  <td class="px-0">
 							<a href="" class="btn btn-primary">Edit</a>
 							<a href="" class="btn btn-danger">Delete</a>

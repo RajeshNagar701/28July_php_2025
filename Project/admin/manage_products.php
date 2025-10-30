@@ -37,7 +37,9 @@ include_once('header.php');
 						  <td scope="col" class="px-0"><?php echo $value->title?></td>
 						  <td scope="col" class="px-0"><?php echo $value->price?></td>
 						  <td scope="col" class="px-0"><?php echo $value->description?></td>
-						  <td scope="col" class="px-0"><?php echo $value->image?></td>
+						  <td scope="col" class="px-0">
+							<img width="100px" src="assets/images/products/<?php echo $value->image?>" />
+						  </td>
 						  <td scope="col" class="px-0"><?php echo $value->status?></td>
 						  <td class="px-0">
 							<a href="" class="btn btn-primary">Edit</a>

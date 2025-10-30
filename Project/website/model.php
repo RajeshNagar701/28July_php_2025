@@ -21,9 +21,19 @@ class model{
 		return $arr;
 	} 
 	
-	function insert(){
+	function insert($tbl,$arr){ //$arr=array("name"=>$name,"email"=>$email,"comment"=>$comment);
 		
-	}
+		$key=array_keys($arr); // $key=array("name","email","comment")
+		$col=implode(",",$key); //  "name","email","comment"
+		
+		$value_arr=array_values($arr); // $value=array($name,$email,$comment)
+		$value=implode("','",$value_arr); //  raj,raj@gmail.com,hello
+		
+		echo $ins="insert into $tbl($col) values('$value')"; //'raj','raj@gmail.com','hello'
+		$run=$this->conn->query($ins); // query run
+		return $run;
+		
+	}	
 	
 	function update(){
 		
