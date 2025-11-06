@@ -60,7 +60,7 @@
             </div>
         </div>
         <div class="offcanvas__logo">
-            <a href="./index.php"><img src="img/logo.png" alt=""></a>
+            <a href="index"><img src="img/logo.png" alt=""></a>
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__option">
@@ -77,7 +77,7 @@
                         <li>ENG</li>
                     </ul>
                 </li>
-                <li><a href="login.php">Sign in</a></li>
+                <li><a href="login">Sign in</a></li>
             </ul>
         </div>
     </div>
@@ -104,7 +104,7 @@
                                             <li>ENG</li>
                                         </ul>
                                     </li>
-                                    <li><a href="login.php">Sign in</a></li>
+                                    <li><a href="login">Sign in</a></li>
                                 </ul>
                             </div>
                             <div class="header__logo">

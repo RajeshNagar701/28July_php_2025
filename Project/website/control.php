@@ -23,13 +23,55 @@ class control extends model{  //  step 2 model class extends in control for func
 				include_once('index.php');
 			break;
 			
+			case '/signup':
+				$country_arr=$this->select('countries');
+				if(isset($_REQUEST['submit']))
+				{
+					$name=$_REQUEST['name'];
+					$email=$_REQUEST['email'];
+					$password=md5($_REQUEST['password']);
+					$gender=$_REQUEST['gender'];
+					$hobby_arr=$_REQUEST['hobby'];
+					$hobby=implode(",",$hobby_arr); //arr to string
+					$cid=$_REQUEST['cid'];
+					
+					
+					$image=$_FILES['image']['name'];
+					if($_FILES['image']['size']>0)
+					{
+						$path="img/customer/".$image;  // path where we upload img
+						$dup_file1=$_FILES['image']['tmp_name']; // get duplicate file
+						move_uploaded_file($dup_file1,$path); // move dupl image in path
+					}
+					
+					$arr=array("name"=>$name,"email"=>$email,"password"=>$password,"gender"=>$gender,"hobby"=>$hobby,"cid"=>$cid,"image"=>$image);
+					
+					$run=$this->insert('customers',$arr);
+					if($run)
+					{
+						echo "customers Inserted Success";
+					}
+					else
+					{
+						echo "nOPT Success";
+					}	
+					
+				}
+				include_once('signup.php');
+			break;
+			
+			case '/login':
+				include_once('login.php');
+			break;
+			
 			case '/about':
 				include_once('about.php');
 			break;
 			
 				
 			case '/shop':
-				$this->select('product');
+				$cate_arr=$this->select('categories');
+				$prod_arr=$this->select('products');
 				include_once('shop.php');
 			break;
 			

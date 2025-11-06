@@ -12,17 +12,20 @@
                 <div class=" offset-lg-2 col-lg-8">
 					 <h3 align="center" class="mb-5">Sign In Here</h3>
                     <div class="contact__form">
-                        <form action="#">
+                        <form action="" method="post">
                             <div class="row">
                                
                                 <div class="col-lg-12">
-                                    <input type="text" placeholder="Email">
+                                    <input type="text" name="email" placeholder="Email">
                                 </div>
 								 <div class="col-lg-12">
-                                    <input type="password" placeholder="Password">
+                                    <input type="password" name="password" placeholder="Password">
                                 </div>
                                 <div class="col-lg-12">
-                                    <button type="submit" class="site-btn">Sign In </button>
+                                    <button type="submit" name="submit" class="site-btn">Sign In </button>
+                                </div>
+								<div class="col-lg-12 mt-5">
+                                    <a href="signup">If you Not Registred Then signup Here </a>
                                 </div>
                             </div>
                         </form>

@@ -42,7 +42,13 @@ class model{
 	function delete(){
 		
 	}
-	function select_where(){
+	
+	
+	function select_where($tbl,$where){
+		
+		$sel="select * from $tbl where 1=1"; // query continue
+		
+		
 		
 	}
 	
