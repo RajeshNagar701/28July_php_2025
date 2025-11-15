@@ -15,6 +15,31 @@ class control extends model{  //  step 2 model class extends in control for func
 		switch($url)
 		{
 			case '/admin-login':
+				if(isset($_REQUEST['submit']))
+				{
+					
+					$email=$_REQUEST['email'];
+					$password=md5($_REQUEST['password']);
+					
+					$where=array("email"=>$email,"password"=>$password);
+					
+					$run=$this->select_where('admins',$where);
+					$chk=$run->num_rows;
+					if($chk==1) // 1 means true & 0 means false
+					{
+						echo "<script>
+						alert('Login Success');
+						window.location='dashboard';
+						</script>";
+					}
+					else
+					{
+						echo "<script>
+						alert('Login Failed');
+						</script>";
+					}
+					
+				}
 				include_once('index.php');
 			break;
 			
