@@ -67,6 +67,7 @@
               </a>
               <ul aria-expanded="false" class="collapse first-level">
                 <li class="sidebar-item">
+                <li class="sidebar-item">
                   <a class="sidebar-link justify-content-between"  
                     href="add_categories">
                     <div class="d-flex align-items-center gap-3">
@@ -191,7 +192,7 @@
                       <i class="ti ti-user fs-6"></i>
                       <p class="mb-0 fs-3">My Profile</p>
                     </a>
-                    <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                    <a href="admin_logout" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                   </div>
                 </div>
               </li>

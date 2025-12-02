@@ -9,7 +9,7 @@ class control extends model{  //  step 2 model class extends in control for func
 	function __construct(){
 	
 		model::__construct();	  // step 3 call model __construct
-		
+		session_start();
 		$url=$_SERVER['PATH_INFO']; //http://localhost/students/01_Aug_PHP_2025/Project/website/control.php
 		
 		switch($url)
@@ -27,6 +27,11 @@ class control extends model{  //  step 2 model class extends in control for func
 					$chk=$run->num_rows;
 					if($chk==1) // 1 means true & 0 means false
 					{
+						$fetch=$run->fetch_object();
+						// sessiob_create
+						$_SESSION['a_name']=$fetch->a_name;
+						$_SESSION['a_id']=$fetch->id;
+					
 						echo "<script>
 						alert('Login Success');
 						window.location='dashboard';
@@ -41,6 +46,16 @@ class control extends model{  //  step 2 model class extends in control for func
 					
 				}
 				include_once('index.php');
+			break;
+			
+			case '/admin_logout':
+				// delete ssession
+				unset($_SESSION['a_name']);
+				unset($_SESSION['a_id']);
+				echo "<script>
+					alert('Logout Success');
+					window.location='admin-login';
+					</script>";
 			break;
 			
 			case '/dashboard':

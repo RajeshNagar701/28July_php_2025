@@ -61,6 +61,7 @@ class model{
 		return $run;
 		
 		//$chk=$run->num_rows; // ans true or false;   // login
+		
 		/*
 		while($fetch=$run->fetch_object())           // fetch all data which query generate
 		{

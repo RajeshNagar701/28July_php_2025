@@ -8,6 +8,7 @@ class control extends model{  //  step 2 model class extends in control for func
 	
 	function __construct(){
 	
+		session_start();
 		model::__construct();	  // step 3 call model __construct
 		
 		$url=$_SERVER['PATH_INFO']; //http://localhost/students/01_Aug_PHP_2025/Project/website/control.php
@@ -63,7 +64,6 @@ class control extends model{  //  step 2 model class extends in control for func
 			case '/login':
 				if(isset($_REQUEST['submit']))
 				{
-					
 					$email=$_REQUEST['email'];
 					$password=md5($_REQUEST['password']);
 					
@@ -73,6 +73,12 @@ class control extends model{  //  step 2 model class extends in control for func
 					$chk=$run->num_rows;
 					if($chk==1) // 1 means true & 0 means false
 					{
+						
+						$fetch=$run->fetch_object();
+						// sessiob_create
+						$_SESSION['uname']=$fetch->name;
+						$_SESSION['uid']=$fetch->uid;
+						
 						echo "<script>
 						alert('Login Success');
 						window.location='index';
@@ -88,6 +94,17 @@ class control extends model{  //  step 2 model class extends in control for func
 				}
 				include_once('login.php');
 			break;
+			
+			case '/cust_logout':
+				// delete ssession
+				unset($_SESSION['uname']);
+				unset($_SESSION['uid']);
+				echo "<script>
+					alert('Logout Success');
+					window.location='index';
+					</script>";
+			break;
+			
 			
 			case '/about':
 				include_once('about.php');

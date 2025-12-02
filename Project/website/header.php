@@ -77,7 +77,21 @@
                         <li>ENG</li>
                     </ul>
                 </li>
-                <li><a href="login">Sign in</a></li>
+				<?php
+				if(isset($_SESSION['uname']))
+				{
+				?>
+                <li><a href="cust_logout">Logout</a></li>
+				<li><a href="#">Hi.. <?php echo $_SESSION['uname']?></a></li>
+				<?php
+				}
+				else
+				{	
+				?>
+				<li><a href="login">Sign in</a></li>
+				<?php
+				}
+				?>
             </ul>
         </div>
     </div>
@@ -104,7 +118,21 @@
                                             <li>ENG</li>
                                         </ul>
                                     </li>
-                                    <li><a href="login">Sign in</a></li>
+                                    <?php
+									if(isset($_SESSION['uname']))
+									{
+									?>
+									<li><a href="cust_logout">Logout</a></li>
+									<li><a href="#">Hi.. <?php echo $_SESSION['uname']?></a></li>
+									<?php
+									}
+									else
+									{	
+									?>
+									<li><a href="login">Sign in</a></li>
+									<?php
+									}
+									?>
                                 </ul>
                             </div>
                             <div class="header__logo">
