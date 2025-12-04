@@ -38,12 +38,7 @@ class model{
 	function update(){
 		
 	}
-	
-	function delete(){
-		
-	}
-	
-	
+
 	function select_where($tbl,$where){
 		
 		$sel="select * from $tbl where 1=1"; // query continue
@@ -70,5 +65,21 @@ class model{
 		*/
 	}
 	
+	
+	function delete($tbl,$where){
+		$del="delete from $tbl where 1=1"; // query continue
+		//$where=array("id"=>$id);
+		$col_arr=array_keys($where); // array("0"=>"email","1"=>"pasword")
+		$value_arr=array_values($where); // array("0"=>"raj@gmail.com","1"=>"sdsd45454")
+		$i=0;
+		foreach($where as $w)
+		{
+			$del.=" and $col_arr[$i]='$value_arr[$i]'";
+			$i++;
+		}
+		
+		$run=$this->conn->query($del);// run query
+		return $run;
+	}
 }
 ?>

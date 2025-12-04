@@ -62,12 +62,10 @@ class control extends model{  //  step 2 model class extends in control for func
 				include_once('dashboard.php');
 			break;
 			
-			case '/add_categories':
-				
+			case '/add_categories':	
 				if(isset($_REQUEST['submit']))
 				{
 					$cate_name=$_REQUEST['cate_name'];
-					
 					$cate_image=$_FILES['cate_image']['name'];
 					if($_FILES['cate_image']['size']>0)
 					{
@@ -75,9 +73,7 @@ class control extends model{  //  step 2 model class extends in control for func
 						$dup_file1=$_FILES['cate_image']['tmp_name']; // get duplicate file
 						move_uploaded_file($dup_file1,$path); // move dupl image in path
 					}
-					
 					$arr=array("cate_name"=>$cate_name,"cate_image"=>$cate_image);
-					
 					$run=$this->insert('categories',$arr);
 					if($run)
 					{
@@ -87,7 +83,6 @@ class control extends model{  //  step 2 model class extends in control for func
 					{
 						echo "nOPT Success";
 					}	
-					
 				}
 				include_once('add_categories.php');
 			break;
@@ -156,6 +151,88 @@ class control extends model{  //  step 2 model class extends in control for func
 			case '/manage_feedback':
 				include_once('manage_feedback.php');
 			break;
+			
+			case '/delete':
+				if(isset($_REQUEST['del_contact']))
+				{
+					$id=$_REQUEST['del_contact'];
+					$where=array("id"=>$id);
+					$res=$this->delete('contacts',$where);
+					if($res){
+						echo "<script>
+						alert('Contact Delete Success');
+						window.location='manage_contact';
+						</script>";
+					}
+						
+				}
+				
+				if(isset($_REQUEST['del_customer']))
+				{
+					
+					$uid=$_REQUEST['del_customer'];
+					$where=array("uid"=>$uid);
+					
+					//get delete image after delete
+					$res=$this->select_where('customers',$where);
+					$fetch=$res->fetch_object();
+					$del_img=$fetch->image;
+					
+					$res=$this->delete('customers',$where);
+					if($res){
+						
+						unlink('../website/img/customer/'.$del_img);
+						echo "<script>
+						alert('Customers Delete Success');
+						window.location='manage_customer';
+						</script>";
+					}
+				}
+				
+				if(isset($_REQUEST['del_cate']))
+				{
+					$cate_id=$_REQUEST['del_cate'];
+					$where=array("cate_id"=>$cate_id);
+					
+					//get delete image after delete
+					$res=$this->select_where('categories',$where);
+					$fetch=$res->fetch_object();
+					$cate_image=$fetch->cate_image;
+					
+					$res=$this->delete('categories',$where);
+					if($res){
+						
+						unlink('assets/images/categories/'.$cate_image);
+						echo "<script>
+						alert('Categories Delete Success');
+						window.location='manage_categories';
+						</script>";
+					}
+				}
+				
+				if(isset($_REQUEST['del_prod']))
+				{
+					$pro_id=$_REQUEST['del_prod'];
+					$where=array("pro_id"=>$pro_id);
+					
+					//get delete image after delete
+					$res=$this->select_where('products',$where);
+					$fetch=$res->fetch_object();
+					$image=$fetch->image;
+					
+					$res=$this->delete('products',$where);
+					if($res){
+						
+						unlink('assets/images/products/'.$image);
+						echo "<script>
+						alert('Product Delete Success');
+						window.location='manage_products';
+						</script>";
+					}
+				}
+			break;
+			
+			
 		}
 	}
 	

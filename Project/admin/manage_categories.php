@@ -40,7 +40,7 @@ include_once('header.php');
 	
 						  <td class="px-0">
 							<a href="" class="btn btn-primary">Edit</a>
-							<a href="" class="btn btn-danger">Delete</a>
+							<a href="delete?del_cate=<?php echo $value->cate_id?>" class="btn btn-danger">Delete</a>
 						  </td>
 						</tr>
 					<?php

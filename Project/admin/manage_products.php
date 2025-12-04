@@ -43,7 +43,7 @@ include_once('header.php');
 						  <td scope="col" class="px-0"><?php echo $value->status?></td>
 						  <td class="px-0">
 							<a href="" class="btn btn-primary">Edit</a>
-							<a href="" class="btn btn-danger">Delete</a>
+							<a href="delete?del_prod=<?php echo $value->pro_id?>" class="btn btn-danger">Delete</a>
 						  </td>
 						</tr>
 					<?php
