@@ -13,7 +13,6 @@ class control extends model{  //  step 2 model class extends in control for func
 		
 		$url=$_SERVER['PATH_INFO']; //http://localhost/students/01_Aug_PHP_2025/Project/website/control.php
 		
-		
 		switch($url)
 		{
 			case '/':
@@ -106,6 +105,26 @@ class control extends model{  //  step 2 model class extends in control for func
 			break;
 			
 			
+			case '/profile':
+				$where=array('uid'=>$_SESSION['uid']);
+				$res=$this->select_where('customers',$where);
+				$fetch=$res->fetch_object();         
+				include_once('profile.php');
+			break;
+			
+			case '/edit_profile':
+				$country_arr=$this->select('countries');
+				if(isset($_REQUEST['edit_cust']))
+				{
+					$uid=$_REQUEST['edit_cust'];
+					$where=array('uid'=>$uid);
+					$res=$this->select_where('customers',$where);
+					$fetch=$res->fetch_object();         
+				}
+				include_once('edit_profile.php');
+			break;
+			
+			
 			case '/about':
 				include_once('about.php');
 			break;
@@ -113,7 +132,21 @@ class control extends model{  //  step 2 model class extends in control for func
 				
 			case '/shop':
 				$cate_arr=$this->select('categories');
-				$prod_arr=$this->select('products');
+				
+				if(isset($_REQUEST['submit']))
+				{
+					$cate_id=$_REQUEST['cate_id'];
+					$where=array('cate_id'=>$cate_id);
+					$res=$this->select_where('products',$where);
+					while($fetch=$res->fetch_object())           // fetch all data which query generate
+					{
+						$prod_arr[]=$fetch;
+					}
+				}
+				else
+				{
+					$prod_arr=$this->select('products');
+				}
 				include_once('shop.php');
 			break;
 			

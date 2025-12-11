@@ -82,7 +82,7 @@
 				{
 				?>
                 <li><a href="cust_logout">Logout</a></li>
-				<li><a href="#">Hi.. <?php echo $_SESSION['uname']?></a></li>
+				<li><a href="profile">Hi.. <?php echo $_SESSION['uname']?></a></li>
 				<?php
 				}
 				else
@@ -123,7 +123,7 @@
 									{
 									?>
 									<li><a href="cust_logout">Logout</a></li>
-									<li><a href="#">Hi.. <?php echo $_SESSION['uname']?></a></li>
+									<li><a href="profile">Hi.. <?php echo $_SESSION['uname']?></a></li>
 									<?php
 									}
 									else
