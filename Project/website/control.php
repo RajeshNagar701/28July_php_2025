@@ -119,7 +119,56 @@ class control extends model{  //  step 2 model class extends in control for func
 					$uid=$_REQUEST['edit_cust'];
 					$where=array('uid'=>$uid);
 					$res=$this->select_where('customers',$where);
-					$fetch=$res->fetch_object();         
+					$fetch=$res->fetch_object();  
+					
+					$old_image=$fetch->image;
+
+					if(isset($_REQUEST['save']))
+					{
+						$name=$_REQUEST['name'];
+						$email=$_REQUEST['email'];
+						$gender=$_REQUEST['gender'];
+						$hobby_arr=$_REQUEST['hobby'];
+						$hobby=implode(",",$hobby_arr); //arr to string
+						$cid=$_REQUEST['cid'];
+						
+						if($_FILES['image']['size']>0)
+						{
+							$image=$_FILES['image']['name'];
+							$path="img/customer/".$image;  // path where we upload img
+							$dup_file1=$_FILES['image']['tmp_name']; // get duplicate file
+							move_uploaded_file($dup_file1,$path); // move dupl image in path
+							
+							$arr=array("name"=>$name,"email"=>$email,"gender"=>$gender,"hobby"=>$hobby,"cid"=>$cid,"image"=>$image);
+						
+							$res=$this->update('customers',$arr,$where);	
+							if($res)
+							{
+								unlink('img/customer/'.$old_image);
+								echo "<script>
+									alert('Update Success');
+									window.location='profile';
+									</script>";
+							}
+						}
+						else
+						{
+							$arr=array("name"=>$name,"email"=>$email,"gender"=>$gender,"hobby"=>$hobby,"cid"=>$cid);
+							$res=$this->update('customers',$arr,$where);	
+							if($res)
+							{
+								echo "<script>
+									alert('Update Success');
+									window.location='profile';
+									</script>";
+							}
+						}
+						
+						
+						
+					
+					}
+							
 				}
 				include_once('edit_profile.php');
 			break;

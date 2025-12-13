@@ -69,12 +69,12 @@
 									</select>
                                 </div>
 								<div class="col-lg-12 m-2">
-                                    <input type="file" class="form-control"  name="image" placeholder="image">
+                                    <input type="file" class="form-control" name="image" placeholder="image">
 									<img src="img/customer/<?php echo $fetch->image;?>" width="100px" />
 								</div>
 					
                                 <div class="col-lg-12">
-                                    <button type="submit" name="submit" class="site-btn">Save</button>
+                                    <button type="submit" name="save" class="site-btn">Save</button>
                                 </div>
 								
                             </div>
