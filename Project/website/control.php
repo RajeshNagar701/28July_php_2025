@@ -24,74 +24,99 @@ class control extends model{  //  step 2 model class extends in control for func
 			break;
 			
 			case '/signup':
-				$country_arr=$this->select('countries');
-				if(isset($_REQUEST['submit']))
+				if(isset($_SESSION['uid']))
 				{
-					$name=$_REQUEST['name'];
-					$email=$_REQUEST['email'];
-					$password=md5($_REQUEST['password']);
-					$gender=$_REQUEST['gender'];
-					$hobby_arr=$_REQUEST['hobby'];
-					$hobby=implode(",",$hobby_arr); //arr to string
-					$cid=$_REQUEST['cid'];
-					
-					
-					$image=$_FILES['image']['name'];
-					if($_FILES['image']['size']>0)
-					{
-						$path="img/customer/".$image;  // path where we upload img
-						$dup_file1=$_FILES['image']['tmp_name']; // get duplicate file
-						move_uploaded_file($dup_file1,$path); // move dupl image in path
-					}
-					
-					$arr=array("name"=>$name,"email"=>$email,"password"=>$password,"gender"=>$gender,"hobby"=>$hobby,"cid"=>$cid,"image"=>$image);
-					
-					$run=$this->insert('customers',$arr);
-					if($run)
-					{
-						echo "customers Inserted Success";
-					}
-					else
-					{
-						echo "nOPT Success";
-					}	
-					
+					echo "<script>
+					window.location='index';
+					</script>";
 				}
-				include_once('signup.php');
+				else
+				{
+					$country_arr=$this->select('countries');
+					if(isset($_REQUEST['submit']))
+					{
+						$name=$_REQUEST['name'];
+						$email=$_REQUEST['email'];
+						$password=md5($_REQUEST['password']);
+						$gender=$_REQUEST['gender'];
+						$hobby_arr=$_REQUEST['hobby'];
+						$hobby=implode(",",$hobby_arr); //arr to string
+						$cid=$_REQUEST['cid'];
+						
+						
+						$image=$_FILES['image']['name'];
+						if($_FILES['image']['size']>0)
+						{
+							$path="img/customer/".$image;  // path where we upload img
+							$dup_file1=$_FILES['image']['tmp_name']; // get duplicate file
+							move_uploaded_file($dup_file1,$path); // move dupl image in path
+						}
+						
+						$arr=array("name"=>$name,"email"=>$email,"password"=>$password,"gender"=>$gender,"hobby"=>$hobby,"cid"=>$cid,"image"=>$image);
+						
+						$run=$this->insert('customers',$arr);
+						if($run)
+						{
+							echo "customers Inserted Success";
+						}
+						else
+						{
+							echo "nOPT Success";
+						}	
+						
+					}
+					include_once('signup.php');
+				}
 			break;
 			
 			case '/login':
-				if(isset($_REQUEST['submit']))
+				if(isset($_SESSION['uid']))
 				{
-					$email=$_REQUEST['email'];
-					$password=md5($_REQUEST['password']);
-					
-					$where=array("email"=>$email,"password"=>$password);
-					
-					$run=$this->select_where('customers',$where);
-					$chk=$run->num_rows;
-					if($chk==1) // 1 means true & 0 means false
-					{
-						
-						$fetch=$run->fetch_object();
-						// sessiob_create
-						$_SESSION['uname']=$fetch->name;
-						$_SESSION['uid']=$fetch->uid;
-						
-						echo "<script>
-						alert('Login Success');
-						window.location='index';
-						</script>";
-					}
-					else
-					{
-						echo "<script>
-						alert('Login Failed');
-						</script>";
-					}
-					
+					echo "<script>
+					window.location='index';
+					</script>";
 				}
-				include_once('login.php');
+				else
+				{
+					if(isset($_REQUEST['submit']))
+					{
+						$email=$_REQUEST['email'];
+						$password=md5($_REQUEST['password']);
+						
+						$where=array("email"=>$email,"password"=>$password);
+						
+						$run=$this->select_where('customers',$where);
+						$chk=$run->num_rows;
+						if($chk==1) // 1 means true & 0 means false
+						{
+							$fetch=$run->fetch_object();
+							if($fetch->status=="Unblock")
+							{
+								// sessiob_create
+								$_SESSION['uname']=$fetch->name;
+								$_SESSION['uid']=$fetch->uid;
+								echo "<script>
+								alert('Login Success');
+								window.location='index';
+								</script>";
+							}
+							else
+							{
+								echo "<script>
+								alert('Login Failed due to Blocked Account');
+								</script>";
+							}
+						}
+						else
+						{
+							echo "<script>
+							alert('Login Failed Due to Wrong Creadencial');
+							</script>";
+						}
+						
+					}
+					include_once('login.php');
+				}
 			break;
 			
 			case '/cust_logout':
@@ -106,69 +131,87 @@ class control extends model{  //  step 2 model class extends in control for func
 			
 			
 			case '/profile':
-				$where=array('uid'=>$_SESSION['uid']);
-				$res=$this->select_where('customers',$where);
-				$fetch=$res->fetch_object();         
-				include_once('profile.php');
+				if(isset($_SESSION['uid']))
+				{
+					$where=array('uid'=>$_SESSION['uid']);
+					$res=$this->select_where('customers',$where);
+					$fetch=$res->fetch_object();         
+					include_once('profile.php');
+				}
+				else
+				{
+					echo "<script>
+					window.location='index';
+					</script>";
+				}
 			break;
 			
 			case '/edit_profile':
-				$country_arr=$this->select('countries');
-				if(isset($_REQUEST['edit_cust']))
+				if(isset($_SESSION['uid']))
 				{
-					$uid=$_REQUEST['edit_cust'];
-					$where=array('uid'=>$uid);
-					$res=$this->select_where('customers',$where);
-					$fetch=$res->fetch_object();  
-					
-					$old_image=$fetch->image;
-
-					if(isset($_REQUEST['save']))
+					$country_arr=$this->select('countries');
+					if(isset($_REQUEST['edit_cust']))
 					{
-						$name=$_REQUEST['name'];
-						$email=$_REQUEST['email'];
-						$gender=$_REQUEST['gender'];
-						$hobby_arr=$_REQUEST['hobby'];
-						$hobby=implode(",",$hobby_arr); //arr to string
-						$cid=$_REQUEST['cid'];
+						$uid=$_REQUEST['edit_cust'];
+						$where=array('uid'=>$uid);
+						$res=$this->select_where('customers',$where);
+						$fetch=$res->fetch_object();  
 						
-						if($_FILES['image']['size']>0)
+						$old_image=$fetch->image;
+
+						if(isset($_REQUEST['save']))
 						{
-							$image=$_FILES['image']['name'];
-							$path="img/customer/".$image;  // path where we upload img
-							$dup_file1=$_FILES['image']['tmp_name']; // get duplicate file
-							move_uploaded_file($dup_file1,$path); // move dupl image in path
+							$name=$_REQUEST['name'];
+							$email=$_REQUEST['email'];
+							$gender=$_REQUEST['gender'];
+							$hobby_arr=$_REQUEST['hobby'];
+							$hobby=implode(",",$hobby_arr); //arr to string
+							$cid=$_REQUEST['cid'];
 							
-							$arr=array("name"=>$name,"email"=>$email,"gender"=>$gender,"hobby"=>$hobby,"cid"=>$cid,"image"=>$image);
-						
-							$res=$this->update('customers',$arr,$where);	
-							if($res)
+							if($_FILES['image']['size']>0)
 							{
-								unlink('img/customer/'.$old_image);
-								echo "<script>
-									alert('Update Success');
-									window.location='profile';
-									</script>";
+								$image=$_FILES['image']['name'];
+								$path="img/customer/".$image;  // path where we upload img
+								$dup_file1=$_FILES['image']['tmp_name']; // get duplicate file
+								move_uploaded_file($dup_file1,$path); // move dupl image in path
+								
+								$arr=array("name"=>$name,"email"=>$email,"gender"=>$gender,"hobby"=>$hobby,"cid"=>$cid,"image"=>$image);
+							
+								$res=$this->update('customers',$arr,$where);	
+								if($res)
+								{
+									unlink('img/customer/'.$old_image);
+									echo "<script>
+										alert('Update Success');
+										window.location='profile';
+										</script>";
+								}
 							}
-						}
-						else
-						{
-							$arr=array("name"=>$name,"email"=>$email,"gender"=>$gender,"hobby"=>$hobby,"cid"=>$cid);
-							$res=$this->update('customers',$arr,$where);	
-							if($res)
+							else
 							{
-								echo "<script>
-									alert('Update Success');
-									window.location='profile';
-									</script>";
+								$arr=array("name"=>$name,"email"=>$email,"gender"=>$gender,"hobby"=>$hobby,"cid"=>$cid);
+								$res=$this->update('customers',$arr,$where);	
+								if($res)
+								{
+									echo "<script>
+										alert('Update Success');
+										window.location='profile';
+										</script>";
+								}
 							}
+							
+							
+							
+						
 						}
-						
-						
-						
-					
+								
 					}
-							
+				}
+				else
+				{
+					echo "<script>
+					window.location='index';
+					</script>";
 				}
 				include_once('edit_profile.php');
 			break;
@@ -185,7 +228,7 @@ class control extends model{  //  step 2 model class extends in control for func
 				if(isset($_REQUEST['submit']))
 				{
 					$cate_id=$_REQUEST['cate_id'];
-					$where=array('cate_id'=>$cate_id);
+					$where=array('cate_id'=>$cate_id,'status'=>"InStock");
 					$res=$this->select_where('products',$where);
 					while($fetch=$res->fetch_object())           // fetch all data which query generate
 					{
@@ -194,7 +237,12 @@ class control extends model{  //  step 2 model class extends in control for func
 				}
 				else
 				{
-					$prod_arr=$this->select('products');
+					$where=array('status'=>"InStock");
+					$res=$this->select_where('products',$where);
+					while($fetch=$res->fetch_object())           // fetch all data which query generate
+					{
+						$prod_arr[]=$fetch;
+					}
 				}
 				include_once('shop.php');
 			break;

@@ -15,37 +15,53 @@ class control extends model{  //  step 2 model class extends in control for func
 		switch($url)
 		{
 			case '/admin-login':
-				if(isset($_REQUEST['submit']))
+				if(isset($_SESSION['a_id']))
 				{
-					
-					$email=$_REQUEST['email'];
-					$password=md5($_REQUEST['password']);
-					
-					$where=array("email"=>$email,"password"=>$password);
-					
-					$run=$this->select_where('admins',$where);
-					$chk=$run->num_rows;
-					if($chk==1) // 1 means true & 0 means false
-					{
-						$fetch=$run->fetch_object();
-						// sessiob_create
-						$_SESSION['a_name']=$fetch->a_name;
-						$_SESSION['a_id']=$fetch->id;
-					
-						echo "<script>
-						alert('Login Success');
-						window.location='dashboard';
-						</script>";
-					}
-					else
-					{
-						echo "<script>
-						alert('Login Failed');
-						</script>";
-					}
-					
+					echo "<script>
+					window.location='dashboard';
+					</script>";
 				}
-				include_once('index.php');
+				else
+				{
+					if(isset($_REQUEST['submit']))
+					{
+						$email=$_REQUEST['email'];
+						$password=$_REQUEST['password'];
+						$enc_password=md5($password);
+						
+						$where=array("email"=>$email,"password"=>$enc_password);
+						
+						$run=$this->select_where('admins',$where);
+						$chk=$run->num_rows;
+						if($chk==1) // 1 means true & 0 means false
+						{
+							// create cookie
+							if(isset($_REQUEST['rem']))
+							{
+								setcookie('c_email',$email,time()+15);  //(365*24*60*60)
+								setcookie('c_password',$password,time()+15); 
+							}
+							
+							$fetch=$run->fetch_object();
+							// sessiob_create
+							$_SESSION['a_name']=$fetch->a_name;
+							$_SESSION['a_id']=$fetch->id;
+							
+							echo "<script>
+							alert('Login Success');
+							window.location='dashboard';
+							</script>";
+						}
+						else
+						{
+							echo "<script>
+							alert('Login Failed');
+							</script>";
+						}
+						
+					}
+					include_once('index.php');
+				}
 			break;
 			
 			case '/admin_logout':
@@ -230,6 +246,77 @@ class control extends model{  //  step 2 model class extends in control for func
 						</script>";
 					}
 				}
+			break;
+			
+			case '/admin_status':
+				if(isset($_REQUEST['status_customer']))
+				{
+					$uid=$_REQUEST['status_customer'];
+					$where=array("uid"=>$uid);
+					$res=$this->select_where('customers',$where);
+					$fetch=$res->fetch_object();
+					
+					if($fetch->status=="Unblock")
+					{
+						$arr=array("status"=>"Block");
+						$res=$this->update('customers',$arr,$where);	
+						if($res)
+						{
+							echo "<script>
+								alert('Status Block Success');
+								window.location='manage_customer';
+								</script>";
+						}
+					}
+					else
+					{
+						$arr=array("status"=>"Unblock");
+						$res=$this->update('customers',$arr,$where);	
+						if($res)
+						{
+							echo "<script>
+								alert('Status Unblock Success');
+								window.location='manage_customer';
+								</script>";
+						}
+					}
+					
+				}
+				
+				if(isset($_REQUEST['status_product']))
+				{
+					$pro_id=$_REQUEST['status_product'];
+					$where=array("pro_id"=>$pro_id);
+					$res=$this->select_where('products',$where);
+					$fetch=$res->fetch_object();
+					
+					if($fetch->status=="InStock")
+					{
+						$arr=array("status"=>"OutofStock");
+						$res=$this->update('products',$arr,$where);	
+						if($res)
+						{
+							echo "<script>
+								alert('Status OutofStock Success');
+								window.location='manage_products';
+								</script>";
+						}
+					}
+					else
+					{
+						$arr=array("status"=>"InStock");
+						$res=$this->update('products',$arr,$where);	
+						if($res)
+						{
+							echo "<script>
+								alert('Status InStock Success');
+								window.location='manage_products';
+								</script>";
+						}
+					}
+					
+				}
+				
 			break;
 			
 			

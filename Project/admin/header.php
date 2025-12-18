@@ -1,5 +1,18 @@
+
+<?php
+if(isset($_SESSION['a_id']))
+{
+	
+}
+else
+{
+	echo "<script>
+	window.location='admin-login';
+	</script>";
+}	
+?> 
  
- <!doctype html>
+<!doctype html>
 <html lang="en">
 
 <head>
