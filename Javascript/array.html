@@ -1,0 +1,34 @@
+<!--
+JavaScript arrays are used to store multiple values in a single variable.
+An array is a special variable, which can hold more than one value at a time.
+
+var car1 = "Saab";
+var car2 = "Volvo";
+var car3 = "BMW";
+
+
+
+var cars=["Saab","Volvo","BMW"];   // $phparr=array("Saab","Volvo","BMW")
+$cars=array("Saab","Volvo","BMW")
+
+
+Access the Elements of an Array
+You access an array element by referring to the index number.
+var name = cars[0];
+-->
+
+<script>
+var cars = ["Saab", "Volvo", "BMW"];  // array("Saab", "Volvo", "BMW")
+document.write(cars + "<br>");
+
+document.write(cars[1] + "<br>");
+
+// ====================================================================================
+
+for(data of cars)   // foreach(cars as data)
+{
+	document.write(data + "<br>");
+}
+
+
+</script>

@@ -1,0 +1,36 @@
+
+<input type="submit" name="submit" value="Alert"  onclick="on_alert()">  <!-- onclick HTML EVENT-->
+<input type="submit" name="submit" value="Confirm" onclick="on_confirm()">  <!-- onclick HTML EVENT-->
+<input type="submit" name="submit" value="Prompt" onclick="on_prompt()">  <!-- onclick HTML EVENT-->
+
+
+<script>
+
+function on_alert()
+{
+	alert('hi i am alert popup'); // ok true
+}
+
+function on_confirm()
+{
+	var ans=confirm('Are you sure want to delete'); // ok & cancel
+	if(ans==true)
+	{
+		alert('Delete Succes');
+	}
+}
+
+
+function on_prompt()
+{
+	var ans=prompt('Enter pass code'); // ok & cancel
+	if(ans==123)
+	{
+		alert('Delete Succes');
+	}
+	else
+	{
+		alert('Delete Not Succes');
+	}
+}
+</script>

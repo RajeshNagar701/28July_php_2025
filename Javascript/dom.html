@@ -1,0 +1,47 @@
+
+
+<h1 id="demo1">Hi i am html rajesh</h1>
+
+<h1 id="demo2">Hi i am html</h1>
+
+<input type="text" id="demo3" value="Micky Mouse">
+
+<script>
+	
+	
+	document.getElementById('demo1').innerHTML="<h3 style='color:red'>Hi i am Javascript</h3>";
+	
+	document.getElementById('demo2').innerText="<h3 style='color:red'>Hi i am Javascript</h3>";
+
+	document.getElementById('demo3').value="Tom & Jerry";
+
+</script>
+
+
+<h1 id="test1">Hi i am html</h1>
+<p id="myp1"></p>
+
+
+<h1 id="test2">Hi i am html</h1>
+<p id="myp2"></p>
+
+<input type="text" id="test3" value="Micky Mouse">
+<input type="text" id="myp3">
+
+
+<script>
+	
+	
+	var html=document.getElementById('test1').innerHTML;
+	document.getElementById('myp1').innerHTML=html;
+	
+	
+	var text=document.getElementById('demo2').innerText;
+	document.getElementById('myp2').innerText=text;
+	
+	
+	var val=document.getElementById('test3').value;
+	document.getElementById('myp3').value=val;
+
+</script>
+

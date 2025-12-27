@@ -1,0 +1,50 @@
+
+
+<form name="myform" action="" method="post" onsubmit="return validation2()">
+			<table border="2" align="center">
+            	<tr>
+                	<th> Registration 2 </th>
+                </tr>
+                <tr>
+            		<th>User Fist Name:-</th>
+                    <td><input type="text" name="ufn" ></td>
+                </tr>
+				<tr>
+            		<th>User Last Name:-</th>
+                    <td>
+						<input type="text" name="uln" >
+						<p id="ulnmsg1" style="color:red"></p>
+					</td>
+                </tr>
+                <tr>
+                	<td><input type="submit" name="submit"/></td>
+                </tr>
+            </table>
+                
+        </form>
+
+
+<hr>
+
+
+<script>
+	
+	function validation2(){
+		
+		var ufn=document.forms['myform']['ufn'].value;
+		if(ufn=="")
+		{
+			alert('Form 2 User First Name Field is required');
+			return false;
+		}
+		var uln=document.forms['myform']['uln'].value;
+		if(uln=="")
+		{
+			document.getElementById('ulnmsg1').innerHTML='User Last Name Field is required';
+			return false;
+		}
+	}
+	
+</script>
+
+

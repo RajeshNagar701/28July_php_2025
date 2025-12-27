@@ -1,0 +1,45 @@
+	<form action="" method="post" onsubmit="return validation()">
+		<table border="2" align="center">
+			<tr>
+				<th> Registration 1 </th>
+			</tr>
+			<tr>
+				<th>User Fist Name:-</th>
+				<td><input type="text" name="ufn" id="ufn" ></td>
+			</tr>
+			
+			<tr>
+				<th>User Last Name:-</th>
+				<td>
+					<input type="text" name="uln" id="uln" >
+					<p id="ulnmsg" style="color:red"></p>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="submit" name="submit"/></td>
+			</tr>
+		</table>       
+    </form>
+<hr>
+
+<script>
+	
+	function validation(){
+	
+		var ufn=document.getElementById('ufn').value;
+		if(ufn=="" || ufn==null)
+		{
+			alert('User Firts Name field is required !');
+			document.getElementById('ufn').focus();
+			return false;
+		}
+		var uln=document.getElementById('uln').value;
+		if(uln=="" || uln==null)
+		{
+			document.getElementById('ulnmsg').innerHTML='User Last Name field is required !';
+			document.getElementById('uln').focus();
+			return false;
+		}
+	}
+	
+</script>
