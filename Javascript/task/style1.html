@@ -6,9 +6,9 @@
 
 <script>
 
-	function darshan()
-	{
-		document.getElementById('test').setAttribute('style','color:red;background-color:yellow;text-transform:uppercase')
+	function display()
+	{												//NAME , VALUE
+		document.getElementById('test').setAttribute('style','background-color:red;text-align:center;color:green')
 	}
 	
 </script>
@@ -17,7 +17,7 @@
 
 <body>
 
-<input type="submit" name="submit" value="click here" ondblclick="darshan()">  <!-- onclick HTML EVENT-->
+<input type="submit" name="submit" value="click here" ondblclick="display()">  <!-- onclick HTML EVENT-->
 
 <h1 id="test" style="color:blue">This is style given by javascript function</h1>
 
