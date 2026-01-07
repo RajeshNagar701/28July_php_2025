@@ -34,7 +34,7 @@ just add below code before body & add Mobile number also
       "ctaText":"Start Chat",
       "borderRadius":"25",
       "autoShow":false,
-      "phoneNumber":""
+      "phoneNumber":"9722041171"
   }
 };
     s.onload = function() {
