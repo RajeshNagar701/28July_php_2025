@@ -1,6 +1,4 @@
 @extends('website.layout.structure')
-
-
 @section('content')
 	<!-- Banner -->
 	<section class="tm-banner">

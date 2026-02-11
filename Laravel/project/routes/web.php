@@ -36,3 +36,46 @@ Route::get('/contact', function () {
 // =================  admin Routes  =============================================
 
 
+Route::get('/admin-login', function () {
+    return view('admin.index');
+});
+
+Route::get('/dashboard', function () {
+    return view('admin.dashboard');
+});
+
+Route::get('/add_categories', function () {
+    return view('admin.add_categories');
+});
+
+Route::get('/manage_categories', function () {
+    return view('admin.manage_categories');
+});
+
+Route::get('/add_products', function () {
+    return view('admin.add_products');
+});
+
+Route::get('/manage_products', function () {
+    return view('admin.manage_products');
+});
+
+Route::get('/manage_contact', function () {
+    return view('admin.manage_contact');
+});
+
+Route::get('/manage_customer', function () {
+    return view('admin.manage_customer');
+});
+
+Route::get('/manage_cart', function () {
+    return view('admin.manage_cart');
+});
+
+Route::get('/manage_order', function () {
+    return view('admin.manage_order');
+});
+
+Route::get('/manage_feedback', function () {
+    return view('admin.manage_feedback');
+});
