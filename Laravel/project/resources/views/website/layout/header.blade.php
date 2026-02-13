@@ -40,10 +40,10 @@ http://www.templatemo.com/tm-475-holiday
   	<div class="tm-header">
   		<div class="container">
   			<div class="row">
-  				<div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
+  				<div class="col-lg-3 col-md-3 col-sm-3 tm-site-name-container">
   					<a href="#" class="tm-site-name">Holiday</a>	
   				</div>
-	  			<div class="col-lg-6 col-md-8 col-sm-9">
+	  			<div class="col-lg-9 col-md-9 col-sm-9">
 	  				<div class="mobile-menu-icon">
 		              <i class="fa fa-bars"></i>
 		            </div>
@@ -53,6 +53,7 @@ http://www.templatemo.com/tm-475-holiday
 							<li><a href="about" class="<?php active('about')?>">About</a></li>
 							<li><a href="tours" class="<?php active('tours')?>">Our Tours</a></li>
 							<li><a href="contact" class="<?php active('contact')?>">Contact</a></li>
+							<li><a href="login" class="<?php active('login')?>">Login</a></li>
 						</ul>
 					</nav>		
 	  			</div>				

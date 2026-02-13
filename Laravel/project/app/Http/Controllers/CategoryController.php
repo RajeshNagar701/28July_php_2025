@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\contact;
+use App\Models\category;
 use Illuminate\Http\Request;
 
-class ContactController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +24,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return view('website.contact');
+        //
     }
 
     /**
@@ -35,34 +35,27 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $table=new contact();
-        $table->name=$request->name;
-        $table->email=$request->email;
-        $table->comment=$request->comment;
-        $table->save();
-        return redirect('/contact');
-
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\contact  $contact
+     * @param  \App\Models\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(contact $contact)
+    public function show(category $category)
     {
-        $data=contact::all();
-        return view('admin.manage_contact',["cont_arr"=>$data]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\contact  $contact
+     * @param  \App\Models\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(contact $contact)
+    public function edit(category $category)
     {
         //
     }
@@ -71,10 +64,10 @@ class ContactController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\contact  $contact
+     * @param  \App\Models\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, contact $contact)
+    public function update(Request $request, category $category)
     {
         //
     }
@@ -82,10 +75,10 @@ class ContactController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\contact  $contact
+     * @param  \App\Models\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(contact $contact)
+    public function destroy(category $category)
     {
         //
     }

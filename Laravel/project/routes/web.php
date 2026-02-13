@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,9 +31,15 @@ Route::get('/tours', function () {
     return view('website.tours');
 });
 
-Route::get('/contact', function () {
-    return view('website.contact');
+Route::get('/contact',[ContactController::class,'create']);
+Route::post('/ins_contact',[ContactController::class,'store']);
+
+Route::get('/login', function () {
+    return view('website.login');
 });
+
+Route::get('/signup',[CustomerController::class,'create']);
+Route::post('/signup',[CustomerController::class,'store']);
 
 // =================  admin Routes  =============================================
 
@@ -60,13 +68,9 @@ Route::get('/manage_products', function () {
     return view('admin.manage_products');
 });
 
-Route::get('/manage_contact', function () {
-    return view('admin.manage_contact');
-});
+Route::get('/manage_contact',[ContactController::class,'show']);
 
-Route::get('/manage_customer', function () {
-    return view('admin.manage_customer');
-});
+Route::get('/manage_customer',[CustomerController::class,'show']);
 
 Route::get('/manage_cart', function () {
     return view('admin.manage_cart');

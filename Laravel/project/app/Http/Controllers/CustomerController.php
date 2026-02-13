@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\contact;
+use App\Models\customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
-class ContactController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +25,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return view('website.contact');
+        return view('website.signup');
     }
 
     /**
@@ -35,34 +36,43 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $table=new contact();
+        $table=new customer();
         $table->name=$request->name;
         $table->email=$request->email;
-        $table->comment=$request->comment;
-        $table->save();
-        return redirect('/contact');
+        $table->password=Hash::make($request->password); // pass enc
+        $table->gender=$request->gender;
+        $table->hobby=implode(",",$request->hobby);      // arr to string
 
-    }
+        //image
+        $file=$request->file('image');
+        $filename=time()."_img.".$request->file('image')->getClientOriginalExtension(); //"125455565656_img.jpg"
+        $file->move('upload/customer/',$filename); // upload image in public
+        $table->image=$filename;
+
+        $table->save();
+        return redirect('/login');
+
+        }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\contact  $contact
+     * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(contact $contact)
+    public function show(customer $customer)
     {
-        $data=contact::all();
-        return view('admin.manage_contact',["cont_arr"=>$data]);
+        $data=customer::all();
+        return view('admin.manage_customer',["cust_arr"=>$data]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\contact  $contact
+     * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(contact $contact)
+    public function edit(customer $customer)
     {
         //
     }
@@ -71,10 +81,10 @@ class ContactController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\contact  $contact
+     * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, contact $contact)
+    public function update(Request $request, customer $customer)
     {
         //
     }
@@ -82,10 +92,10 @@ class ContactController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\contact  $contact
+     * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(contact $contact)
+    public function destroy(customer $customer)
     {
         //
     }
