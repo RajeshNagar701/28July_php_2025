@@ -31,8 +31,8 @@
 			</div>
 			<div class="row">
 				<!-- contact form -->
-				<form action="" method="post" class="tm-contact-form">
-				
+				<form action="{{url('/login_auth')}}" class="tm-contact-form">
+					@csrf
 					<div class="col-lg-12 col-md-12 tm-contact-form-input">
 						
 						<div class="form-group">

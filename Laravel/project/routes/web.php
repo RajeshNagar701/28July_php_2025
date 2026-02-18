@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
@@ -34,9 +35,9 @@ Route::get('/tours', function () {
 Route::get('/contact',[ContactController::class,'create']);
 Route::post('/ins_contact',[ContactController::class,'store']);
 
-Route::get('/login', function () {
-    return view('website.login');
-});
+Route::get('/login',[CustomerController::class,'login']);
+Route::get('/login_auth',[CustomerController::class,'login_auth']);
+Route::get('/user_logout',[CustomerController::class,'user_logout']);
 
 Route::get('/signup',[CustomerController::class,'create']);
 Route::post('/signup',[CustomerController::class,'store']);
@@ -44,9 +45,9 @@ Route::post('/signup',[CustomerController::class,'store']);
 // =================  admin Routes  =============================================
 
 
-Route::get('/admin-login', function () {
-    return view('admin.index');
-});
+Route::get('/admin_login',[AdminController::class,'admin_login']);
+Route::get('/admin_auth',[AdminController::class,'admin_auth']);
+Route::get('/admin_logout',[AdminController::class,'admin_logout']);
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');

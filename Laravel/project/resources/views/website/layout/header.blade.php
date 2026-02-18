@@ -1,4 +1,5 @@
 
+
 <?php
 	function active($currect_page){
 	  $url_array =  explode('/', $_SERVER['REQUEST_URI']) ; // current page url
@@ -35,7 +36,10 @@ http://www.templatemo.com/tm-475-holiday
     <![endif]-->
 
   </head>
+  
   <body class="tm-gray-bg">
+
+  @include('sweetalert::alert')
   	<!-- Header -->
   	<div class="tm-header">
   		<div class="container">
@@ -53,7 +57,11 @@ http://www.templatemo.com/tm-475-holiday
 							<li><a href="about" class="<?php active('about')?>">About</a></li>
 							<li><a href="tours" class="<?php active('tours')?>">Our Tours</a></li>
 							<li><a href="contact" class="<?php active('contact')?>">Contact</a></li>
+							@if(session('user_id'))
+							<li><a href="user_logout">Logout</a></li>
+							@else
 							<li><a href="login" class="<?php active('login')?>">Login</a></li>
+							@endif
 						</ul>
 					</nav>		
 	  			</div>				
