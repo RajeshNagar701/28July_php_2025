@@ -139,8 +139,11 @@ class CustomerController extends Controller
      * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(customer $customer)
+    public function destroy(customer $customer,$id)
     {
-        //
+        $data=customer::find($id)->delete();
+        unlink('upload/customer/'.$data->image);
+        Alert::success('Customer Deleted Success');
+        return back();
     }
 }

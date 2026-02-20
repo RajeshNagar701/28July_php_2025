@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\contact;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ContactController extends Controller
 {
@@ -85,8 +86,10 @@ class ContactController extends Controller
      * @param  \App\Models\contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function destroy(contact $contact)
+    public function destroy(contact $contact,$id)
     {
-        //
+        $data=contact::find($id)->delete();
+        Alert::success('Contact Deleted Success');
+        return back();
     }
 }

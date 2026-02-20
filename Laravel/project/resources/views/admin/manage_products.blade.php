@@ -28,18 +28,18 @@
 							foreach ($prod_arr as $value) {
 							?>
 								<tr>
-									<td scope="col" class="px-0"><?php echo $value->pro_id ?></td>
+									<td scope="col" class="px-0"><?php echo $value->id ?></td>
 									<td scope="col" class="px-0"><?php echo $value->cate_id ?></td>
-									<td scope="col" class="px-0"><?php echo $value->title ?></td>
+									<td scope="col" class="px-0"><?php echo $value->name ?></td>
 									<td scope="col" class="px-0"><?php echo $value->price ?></td>
 									<td scope="col" class="px-0"><?php echo $value->description ?></td>
 									<td scope="col" class="px-0">
-										<img width="100px" src="assets/images/products/<?php echo $value->image ?>" />
+										<img width="100px" src="upload/package/<?php echo $value->image ?>" />
 									</td>
 									<td scope="col" class="px-0"><?php echo $value->status ?></td>
 									<td class="px-0">
 										<a href="" class="btn btn-primary">Edit</a>
-										<a href="delete?del_prod=<?php echo $value->pro_id ?>" class="btn btn-danger">Delete</a>
+										<a href="{{url('/delete_products/'.$value->id)}}" class="btn btn-danger">Delete</a>
 										<a href="admin_status?status_product=<?php echo $value->pro_id ?>" class="btn btn-success">
 											<?php echo $value->status ?>
 										</a>

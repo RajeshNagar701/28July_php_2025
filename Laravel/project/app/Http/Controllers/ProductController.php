@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\category;
 use App\Models\product;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
@@ -14,7 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $prod_arr=product::all();
+        return view('admin.manage_products',['prod_arr'=>$prod_arr]);
     }
 
     /**
@@ -24,7 +27,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+         $cate_arr=category::all();
+         return view('admin.add_products',['cate_arr'=>$cate_arr]);
     }
 
     /**
@@ -35,7 +39,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $table = new product();
+        $table->cate_id = $request->cate_id;
+        $table->name = $request->name;
+        $table->description = $request->description;
+        $table->price = $request->price;
+      
+        //image
+        $file = $request->file('image');
+        $filename = time() . "_img." . $request->file('image')->getClientOriginalExtension(); //"125455565656_img.jpg"
+        $file->move('upload/package/', $filename); // upload image in public
+        $table->image = $filename;
+        $table->save();
+        Alert::success('Package added success');
+        return back();
     }
 
     /**
@@ -78,8 +95,12 @@ class ProductController extends Controller
      * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(product $product)
+    public function destroy(product $product,$id)
     {
-        //
+        $data=product::find($id);
+        unlink('upload/package/'.$data->image);
+        $data->delete();
+        Alert::success('Package Deleted Success');
+        return back();
     }
 }

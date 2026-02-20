@@ -27,17 +27,17 @@
 					  ?>
 					  
 						<tr>
-						  <td scope="col" class="px-0"><?php echo $value->cate_id?></td>
+						  <td scope="col" class="px-0"><?php echo $value->id?></td>
 						  <td scope="col" class="px-0">
-							<?php echo $value->cate_name?>
+							<?php echo $value->name?>
 						  </td>
 						  <td scope="col" class="px-0">
-							<img width="100px" src="assets/images/categories/<?php echo $value->cate_image?>" />
+							<img width="100px" src="upload/category/<?php echo $value->image?>" />
 						  </td>
 	
 						  <td class="px-0">
 							<a href="" class="btn btn-primary">Edit</a>
-							<a href="delete?del_cate=<?php echo $value->cate_id?>" class="btn btn-danger">Delete</a>
+							<a href="{{url('/delete_categories/'.$value->id)}}" class="btn btn-danger">Delete</a>
 						  </td>
 						</tr>
 					<?php

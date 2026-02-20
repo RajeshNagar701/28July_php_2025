@@ -147,25 +147,7 @@
                 <span class="hide-menu">Customer</span>
               </a>
             </li>
-			<li class="sidebar-item">
-              <a class="sidebar-link" href="manage_cart" aria-expanded="false">
-                <i class="ti ti-atom"></i>
-                <span class="hide-menu">Cart Repport</span>
-              </a>
-            </li>
-			<li class="sidebar-item">
-              <a class="sidebar-link" href="manage_order" aria-expanded="false">
-                <i class="ti ti-atom"></i>
-                <span class="hide-menu">Order Report</span>
-              </a>
-            </li>
-			<li class="sidebar-item">
-              <a class="sidebar-link" href="manage_feedback" aria-expanded="false">
-                <i class="ti ti-atom"></i>
-                <span class="hide-menu">Feedback</span>
-              </a>
-            </li>
-
+		
           </ul>
         </nav>
         <!-- End Sidebar navigation -->

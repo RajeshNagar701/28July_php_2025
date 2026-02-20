@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\category;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
 {
@@ -14,7 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $cate_arr=category::all();
+        return view('admin.manage_categories',["cate_arr"=>$cate_arr]);
     }
 
     /**
@@ -24,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+         return view('admin.add_categories');
     }
 
     /**
@@ -35,7 +37,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $table = new category();
+        $table->name = $request->name;
+      
+        //image
+        $file = $request->file('image');
+        $filename = time() . "_img." . $request->file('image')->getClientOriginalExtension(); //"125455565656_img.jpg"
+        $file->move('upload/category/', $filename); // upload image in public
+        $table->image = $filename;
+        $table->save();
+        Alert::success('Category added success');
+        return back();
     }
 
     /**
@@ -46,7 +58,7 @@ class CategoryController extends Controller
      */
     public function show(category $category)
     {
-        //
+        
     }
 
     /**
@@ -78,8 +90,12 @@ class CategoryController extends Controller
      * @param  \App\Models\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(category $category)
+    public function destroy(category $category,$id)
     {
-        //
+        $data=category::find($id);
+        unlink('upload/category/'.$data->image);
+        $data->delete();
+        Alert::success('Category Deleted Success');
+        return back();
     }
 }

@@ -32,7 +32,7 @@
 						  <td scope="col" class="px-0"><?php echo $value->comment?></td>
 						  <td class="px-0">
 							<a href="" class="btn btn-primary">Edit</a>
-							<a href="delete?del_contact=<?php echo $value->id?>" class="btn btn-danger">Delete</a>
+							<a href="{{url('/delete_contact/'.$value->id)}}" class="btn btn-danger">Delete</a>
 						  </td>
 						</tr>
 					<?php

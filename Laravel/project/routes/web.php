@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,34 +55,22 @@ Route::get('/dashboard', function () {
     return view('admin.dashboard');
 });
 
-Route::get('/add_categories', function () {
-    return view('admin.add_categories');
-});
+Route::get('/add_categories',[CategoryController::class,'create']);
+Route::post('/add_categories',[CategoryController::class,'store']);
 
-Route::get('/manage_categories', function () {
-    return view('admin.manage_categories');
-});
+Route::get('/manage_categories',[CategoryController::class,'index']);
+Route::get('/delete_categories/{id}',[CategoryController::class,'destroy']);
 
-Route::get('/add_products', function () {
-    return view('admin.add_products');
-});
+Route::get('/add_products',[ProductController::class,'create']);
+Route::post('/add_products',[ProductController::class,'store']);
 
-Route::get('/manage_products', function () {
-    return view('admin.manage_products');
-});
+Route::get('/manage_products',[ProductController::class,'index']);
+Route::get('/delete_products/{id}',[ProductController::class,'destroy']);
+
 
 Route::get('/manage_contact',[ContactController::class,'show']);
+Route::get('/delete_contact/{id}',[ContactController::class,'destroy']);
 
 Route::get('/manage_customer',[CustomerController::class,'show']);
+Route::get('/delete_customer/{id}',[CustomerController::class,'destroy']);
 
-Route::get('/manage_cart', function () {
-    return view('admin.manage_cart');
-});
-
-Route::get('/manage_order', function () {
-    return view('admin.manage_order');
-});
-
-Route::get('/manage_feedback', function () {
-    return view('admin.manage_feedback');
-});
