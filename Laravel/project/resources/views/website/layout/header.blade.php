@@ -53,14 +53,15 @@ http://www.templatemo.com/tm-475-holiday
 		            </div>
 	  				<nav class="tm-nav">
 						<ul>
-							<li><a href="index" class="<?php active('index')?>">Home</a></li>
-							<li><a href="about" class="<?php active('about')?>">About</a></li>
-							<li><a href="tours" class="<?php active('tours')?>">Our Tours</a></li>
-							<li><a href="contact" class="<?php active('contact')?>">Contact</a></li>
+							<li><a href="/index" class="<?php active('index')?>">Home</a></li>
+							<li><a href="/about" class="<?php active('about')?>">About</a></li>
+							<li><a href="/tours" class="<?php active('tours')?>">Our Tours</a></li>
+							<li><a href="/contact" class="<?php active('contact')?>">Contact</a></li>
 							@if(session('user_id'))
-							<li><a href="user_logout">Logout</a></li>
+							<li><a href="/user_logout">Logout</a></li>
+							<li><a href="/user_profile">Hi .. {{session('user_name')}} <i class="fa fa-edit"></i></a></li>
 							@else
-							<li><a href="login" class="<?php active('login')?>">Login</a></li>
+							<li><a href="/login" class="<?php active('login')?>">Login</a></li>
 							@endif
 						</ul>
 					</nav>		

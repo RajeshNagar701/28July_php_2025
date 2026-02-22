@@ -44,6 +44,12 @@ Route::get('/user_logout',[CustomerController::class,'user_logout']);
 Route::get('/signup',[CustomerController::class,'create']);
 Route::post('/signup',[CustomerController::class,'store']);
 
+Route::get('/user_profile',[CustomerController::class,'user_profile']);
+Route::get('/user_profile/{id}',[CustomerController::class,'edit']);
+Route::post('/update_customer/{id}',[CustomerController::class,'update']);
+
+Route::get('/status_customer/{id}',[CustomerController::class,'status_customer']);
+
 // =================  admin Routes  =============================================
 
 

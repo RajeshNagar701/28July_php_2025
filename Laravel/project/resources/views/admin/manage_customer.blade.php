@@ -35,7 +35,7 @@
 						  <td class="px-0 text-center">
 							<a href="" class="btn btn-primary">Edit</a>
 							<a href="{{url('/delete_customer/'.$value->id)}}" class="btn btn-danger">Delete</a>
-							<a href="admin_status?status_customer=<?php echo $value->id?>" class="btn btn-success">
+							<a href="{{url('/status_customer/'.$value->id)}}" class="btn btn-success">
 								<?php echo $value->status?>
 							</a>
 						  </td>

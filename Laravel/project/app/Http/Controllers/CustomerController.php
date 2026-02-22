@@ -31,18 +31,26 @@ class CustomerController extends Controller
                 Alert::error('Failed', 'Login Failed Due to Wrong Password');
                 return back();
             } else {
-                //create session 
-                session()->put('user_id', $data->id);
-                session()->put('user_name', $data->name);
 
-                //session()->get('session_name') or session('session_name')  =>  get session
+                if ($data->status == "Unblock") {
+                    //create session 
+                    session()->put('user_id', $data->id);
+                    session()->put('user_name', $data->name);
 
-                //session()->pull('session_name') or   =>  delete session
+                    //session()->get('session_name') or session('session_name')  =>  get session
 
-                // if(session('session_name'))  or if(session()->has('session_name')) => check session
+                    //session()->pull('session_name') or   =>  delete session
 
-                Alert::success('Success', 'Login Success');
-                return redirect('/');
+                    // if(session('session_name'))  or if(session()->has('session_name')) => check session
+
+                    Alert::success('Success', 'Login Success');
+                    return redirect('/');
+                }
+                else
+                {
+                    Alert::error('Failed', 'Account Blocked !');
+                    return back();
+                }
             }
         } else {
             Alert::error('Failed', 'Login Failed Due to Wrong Email');
@@ -95,6 +103,7 @@ class CustomerController extends Controller
         $table->image = $filename;
 
         $table->save();
+        Alert::success('Signup Success');
         return redirect('/login');
     }
 
@@ -116,9 +125,17 @@ class CustomerController extends Controller
      * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(customer $customer)
+
+    public function user_profile(customer $customer)
     {
-        //
+        $data = customer::where('id', session('user_id'))->first();
+        return view('website.user_profile', ["data" => $data]);
+    }
+
+    public function edit(customer $customer, $id)
+    {
+        $data = customer::find($id);
+        return view('website.edit_profile', ["data" => $data]);
     }
 
     /**
@@ -128,9 +145,25 @@ class CustomerController extends Controller
      * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, customer $customer)
+    public function update(Request $request, customer $customer, $id)
     {
-        //
+        $data = customer::find($id);
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->gender = $request->gender;
+        $data->hobby = implode(",", $request->hobby);
+
+        if ($request->hasFile('image')) {
+            unlink('upload/customer/' . $data->image);
+
+            $file = $request->file('image');
+            $filename = time() . "_img." . $request->file('image')->getClientOriginalExtension(); //"125455565656_img.jpg"
+            $file->move('upload/customer/', $filename); // upload image in public
+            $data->image = $filename;
+        }
+        $data->update();
+        Alert::success('Update Success');
+        return redirect('/user_profile');
     }
 
     /**
@@ -139,11 +172,29 @@ class CustomerController extends Controller
      * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(customer $customer,$id)
+    public function destroy(customer $customer, $id)
     {
-        $data=customer::find($id)->delete();
-        unlink('upload/customer/'.$data->image);
+        $data = customer::find($id)->delete();
+        unlink('upload/customer/' . $data->image);
         Alert::success('Customer Deleted Success');
         return back();
+    }
+
+    public function status_customer(customer $customer, $id)
+    {
+        $data = customer::find($id);
+        if ($data->status == "Block") {
+            $data->status = "Unblock";
+            $data->update();
+            Alert::success('Customer Unblocked Success');
+            return back();
+        } else {
+            $data->status = "Block";
+            $data->update();
+            session()->pull('user_id');
+            session()->pull('user_name');
+            Alert::success('Customer Block Success');
+            return back();
+        }
     }
 }

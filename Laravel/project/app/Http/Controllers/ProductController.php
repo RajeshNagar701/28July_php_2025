@@ -97,7 +97,7 @@ class ProductController extends Controller
      */
     public function destroy(product $product,$id)
     {
-        $data=product::find($id);
+        $data=product::find($id);  // only find ID data
         unlink('upload/package/'.$data->image);
         $data->delete();
         Alert::success('Package Deleted Success');
