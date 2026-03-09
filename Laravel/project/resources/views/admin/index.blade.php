@@ -29,11 +29,11 @@
                   @csrf
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Username</label>
-                    <input type="email" name="email" class="form-control" value="<?php if(isset($_COOKIE['c_email'])){ echo $_COOKIE['c_email'];}?>">
+                    <input type="email" name="email" class="form-control" value="<?php if(request()->cookie('cemail')) { echo request()->cookie('cemail'); }?>">
                   </div>
                   <div class="mb-4">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" value="<?php if(isset($_COOKIE['c_password'])){ echo $_COOKIE['c_password'];}?>">
+                    <input type="password" name="password" class="form-control" value="<?php if(request()->cookie('cpass')) { echo request()->cookie('cpass'); }?>">
                   </div>
                   <div class="d-flex align-items-center justify-content-between mb-4">
                     <div class="form-check">

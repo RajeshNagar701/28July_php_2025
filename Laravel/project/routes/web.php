@@ -37,46 +37,52 @@ Route::get('/tours', function () {
 Route::get('/contact',[ContactController::class,'create']);
 Route::post('/ins_contact',[ContactController::class,'store']);
 
-Route::get('/login',[CustomerController::class,'login']);
-Route::get('/login_auth',[CustomerController::class,'login_auth']);
-Route::get('/user_logout',[CustomerController::class,'user_logout']);
+Route::get('/login',[CustomerController::class,'login'])->middleware('user_before');
+Route::get('/login_auth',[CustomerController::class,'login_auth'])->middleware('user_before');
 
-Route::get('/signup',[CustomerController::class,'create']);
-Route::post('/signup',[CustomerController::class,'store']);
 
-Route::get('/user_profile',[CustomerController::class,'user_profile']);
-Route::get('/user_profile/{id}',[CustomerController::class,'edit']);
-Route::post('/update_customer/{id}',[CustomerController::class,'update']);
+Route::get('/signup',[CustomerController::class,'create'])->middleware('user_before');
+Route::post('/signup',[CustomerController::class,'store'])->middleware('user_before');
 
-Route::get('/status_customer/{id}',[CustomerController::class,'status_customer']);
+Route::get('/user_profile',[CustomerController::class,'user_profile'])->middleware('user_after');
+Route::get('/user_profile/{id}',[CustomerController::class,'edit'])->middleware('user_after');
+Route::post('/update_customer/{id}',[CustomerController::class,'update'])->middleware('user_after');
+Route::get('/user_logout',[CustomerController::class,'user_logout'])->middleware('user_before');
 
 // =================  admin Routes  =============================================
 
 
-Route::get('/admin_login',[AdminController::class,'admin_login']);
-Route::get('/admin_auth',[AdminController::class,'admin_auth']);
-Route::get('/admin_logout',[AdminController::class,'admin_logout']);
+Route::group(['middleware'=>['admin_before']],function(){
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
+    Route::get('/admin_login',[AdminController::class,'admin_login']);
+    Route::get('/admin_auth',[AdminController::class,'admin_auth']);
+
 });
 
-Route::get('/add_categories',[CategoryController::class,'create']);
-Route::post('/add_categories',[CategoryController::class,'store']);
 
-Route::get('/manage_categories',[CategoryController::class,'index']);
-Route::get('/delete_categories/{id}',[CategoryController::class,'destroy']);
+Route::group(['middleware'=>['admin_after']],function(){
 
-Route::get('/add_products',[ProductController::class,'create']);
-Route::post('/add_products',[ProductController::class,'store']);
+    Route::get('/admin_logout',[AdminController::class,'admin_logout']);
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    });
+    Route::get('/add_categories',[CategoryController::class,'create']);
+    Route::post('/add_categories',[CategoryController::class,'store']);
 
-Route::get('/manage_products',[ProductController::class,'index']);
-Route::get('/delete_products/{id}',[ProductController::class,'destroy']);
+    Route::get('/manage_categories',[CategoryController::class,'index']);
+    Route::get('/delete_categories/{id}',[CategoryController::class,'destroy']);
+
+    Route::get('/add_products',[ProductController::class,'create']);
+    Route::post('/add_products',[ProductController::class,'store']);
+
+    Route::get('/manage_products',[ProductController::class,'index']);
+    Route::get('/delete_products/{id}',[ProductController::class,'destroy']);
 
 
-Route::get('/manage_contact',[ContactController::class,'show']);
-Route::get('/delete_contact/{id}',[ContactController::class,'destroy']);
+    Route::get('/manage_contact',[ContactController::class,'show']);
+    Route::get('/delete_contact/{id}',[ContactController::class,'destroy']);
 
-Route::get('/manage_customer',[CustomerController::class,'show']);
-Route::get('/delete_customer/{id}',[CustomerController::class,'destroy']);
-
+    Route::get('/manage_customer',[CustomerController::class,'show']);
+    Route::get('/delete_customer/{id}',[CustomerController::class,'destroy']);
+    Route::get('/status_customer/{id}',[CustomerController::class,'status_customer']);
+});

@@ -78,13 +78,23 @@
 				@csrf
 				<div class="col-lg-6 col-md-6 tm-contact-form-input">
 					<div class="form-group">
-						<input type="text" name="name" id="contact_name" class="form-control" placeholder="NAME" />
+						<input type="text" name="name" value="{{old('name')}}" id="contact_name" class="form-control" placeholder="NAME" />
+						@error('name')
+							<div class="alert alert-danger">{{ $message }}</div>
+						@enderror
+
 					</div>
 					<div class="form-group">
-						<input type="email" name="email" id="contact_email" class="form-control" placeholder="EMAIL" />
+						<input type="email"  value="{{old('email')}}" name="email" id="contact_email" class="form-control" placeholder="EMAIL" />
+						@error('email')
+							<div class="alert alert-danger">{{ $message }}</div>
+						@enderror
 					</div>
 					<div class="form-group">
-						<textarea id="contact_message" name="comment" class="form-control" rows="6" placeholder="MESSAGE"></textarea>
+						<textarea id="contact_message" value="{{old('comment')}}"  name="comment" class="form-control" rows="6" placeholder="MESSAGE"></textarea>
+						@error('comment')
+							<div class="alert alert-danger">{{ $message }}</div>
+						@enderror
 					</div>
 					<div class="form-group">
 						<button class="tm-submit-btn" type="submit" name="submit">Submit now</button>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -31,6 +32,15 @@ class AdminController extends Controller
                 session()->put('admin_id', $data->id);
                 session()->put('admin_name', $data->name);
 
+
+                // cookie create
+                if($request->rem)
+                {
+                    Cookie::queue('cemail',$request->email,1);
+                    Cookie::queue('cpass',$request->password,1);
+
+                    // request()->cookie('cpass')   get cookie
+                }
                 Alert::success('Success', 'Login Success');
                 return redirect('/dashboard');
             }

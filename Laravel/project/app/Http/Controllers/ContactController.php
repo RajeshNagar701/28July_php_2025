@@ -36,6 +36,12 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name'=> 'required|alpha:ascii|max:255',
+            'email' => 'required',
+            'comment' => 'required'
+        ]);
+
         $table=new contact();
         $table->name=$request->name;
         $table->email=$request->email;

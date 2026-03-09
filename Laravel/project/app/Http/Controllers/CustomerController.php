@@ -25,6 +25,11 @@ class CustomerController extends Controller
 
     public function login_auth(Request $request)
     {
+        $validated = $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
         $data = customer::where('email', $request->email)->first();
         if ($data) {                    // your value  === enc_value
             if (!(Hash::check($request->password, $data->password))) {
@@ -89,6 +94,8 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+
+    
         $table = new customer();
         $table->name = $request->name;
         $table->email = $request->email;
