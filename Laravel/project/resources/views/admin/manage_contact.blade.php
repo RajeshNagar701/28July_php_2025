@@ -15,7 +15,6 @@
 						  <th scope="col" class="px-0 text-muted">Id</th>
 						  <th scope="col" class="px-0 text-muted">Name</th>
 						  <th scope="col" class="px-0 text-muted">Email</th>
-						  <th scope="col" class="px-0 text-muted">Comment</th>
 						  <th scope="col" class="px-0 text-muted">Action</th>
 						</tr>
 					  </thead>
@@ -29,7 +28,6 @@
 						  <td scope="col" class="px-0"><?php echo $value->id?></td>
 						  <td scope="col" class="px-0"><?php echo $value->name?></td>
 						  <td scope="col" class="px-0"><?php echo $value->email?></td>
-						  <td scope="col" class="px-0"><?php echo $value->comment?></td>
 						  <td class="px-0">
 							<a href="" class="btn btn-primary">Edit</a>
 							<a href="{{url('/delete_contact/'.$value->id)}}" class="btn btn-danger">Delete</a>

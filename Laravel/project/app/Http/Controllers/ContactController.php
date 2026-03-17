@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\inquiry_mail;
 use App\Models\contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ContactController extends Controller
@@ -44,9 +46,10 @@ class ContactController extends Controller
 
         $table=new contact();
         $table->name=$request->name;
-        $table->email=$request->email;
+ $email=$table->email=$request->email;
         $table->comment=$request->comment;
         $table->save();
+        Mail::to($email)->send(new inquiry_mail());
         return redirect('/contact');
 
     }
