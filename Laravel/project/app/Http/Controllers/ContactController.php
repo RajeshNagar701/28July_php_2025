@@ -62,7 +62,7 @@ class ContactController extends Controller
      */
     public function show(contact $contact)
     {
-        $data=contact::all();
+        $data=contact::paginate(20);   // contact::all(); 
         return view('admin.manage_contact',["cont_arr"=>$data]);
     }
 
