@@ -21,5 +21,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/users',[userController::class,'index']);  // all data
 Route::get('/users/{id}',[userController::class,'show']); // single data
+Route::get('/search/{key}',[userController::class,'search']);
 
 Route::post('/post_users',[userController::class,'store']); // insert data
+Route::post('/update/{id}',[userController::class,'update']); // update
+Route::put('/updatestatus/{id}',[userController::class,'updatestatus']); // update
+
+Route::delete('/delete/{id}',[UserController::class,'destroy']); // delete
+Route::post('/login',[userController::class,'login']); // login

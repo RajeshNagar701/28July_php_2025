@@ -26,7 +26,8 @@
 								<tr>
 									<td scope="col" class="px-0"><?php echo $value->id ?></td>
 									<td scope="col" class="px-0"><?php echo $value->name ?></td>
-									<td scope="col" class="px-0"><?php echo $value->email ?></td>
+									<td scope="col" class="px-0"><?php echo $value->email ?>
+									<td scope="col" class="px-0">{{ custome_date($value->created_at,'Y-m-d') }}</td>
 									<td class="px-0">
 										<a href="" class="btn btn-primary">Edit</a>
 										<a href="{{url('/delete_contact/'.$value->id)}}" class="btn btn-danger">Delete</a>
