@@ -1,0 +1,203 @@
+/* Resume Preview Styles */
+.resume-preview-wrapper {
+  width: 100%;
+}
+
+/* Template Selector Chips */
+.template-selector {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.template-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 2px solid #e2e8f0;
+  background: white;
+  color: #334155;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.template-chip:hover {
+  border-color: var(--chip-accent);
+}
+
+.template-chip.active {
+  border-color: var(--chip-accent);
+  background: var(--chip-accent);
+  color: white;
+}
+
+.chip-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.template-chip.active .chip-dot {
+  background: white !important;
+}
+
+/* Resume Styles (print-friendly, white background) */
+.resume-template {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 10pt;
+  color: #1e293b;
+  line-height: 1.5;
+}
+
+.resume-header {
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.resume-header h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 22pt;
+  margin-bottom: 2px;
+  letter-spacing: -0.5px;
+}
+
+.resume-jobtitle {
+  font-size: 11pt;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.resume-contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 8.5pt;
+  color: #475569;
+}
+
+.resume-contact-row span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Sections */
+.resume-section {
+  margin-bottom: 14px;
+}
+
+.section-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11pt;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+}
+
+.resume-entry {
+  margin-bottom: 10px;
+}
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.entry-company {
+  font-weight: 400;
+  color: #475569;
+}
+
+.entry-date {
+  font-size: 8.5pt;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+.entry-location {
+  font-size: 8.5pt;
+  color: #64748b;
+  margin-top: 1px;
+}
+
+.entry-link {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 8.5pt;
+  text-decoration: none;
+}
+
+.resume-text {
+  font-size: 9.5pt;
+  color: #334155;
+  margin-top: 4px;
+}
+
+/* Skills tags inline */
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill-tag {
+  font-size: 8.5pt;
+  padding: 3px 10px;
+  border: 1px solid;
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+/* Template Variations */
+
+/* Classic Elegant */
+.classic-elegant .resume-header h1 {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.classic-elegant .section-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  text-transform: capitalize;
+  letter-spacing: 0;
+  font-size: 12pt;
+}
+
+/* Bold Creative */
+.bold-creative .resume-header {
+  border-bottom-width: 4px;
+}
+
+.bold-creative .resume-header h1 {
+  font-size: 26pt;
+  font-weight: 800;
+}
+
+.bold-creative .section-title {
+  font-size: 12pt;
+  font-weight: 700;
+}
+
+.bold-creative .skill-tag {
+  background: currentColor;
+  color: white !important;
+  border: none;
+  padding: 4px 12px;
+}
+
+/* Spin animation for loading */
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+.spin {
+  animation: spin 1s linear infinite;
+}

@@ -1,6 +1,7 @@
 @extends('layout.main')
 
 @section('content')
+@include('sweetalert::alert')
 <div class="container mt-5">
   <div class="row">
 
@@ -25,8 +26,8 @@
             <td>{{ $value->short_description}}</td>
             <td>{{ $value->long_description}}</td>
             <td><img src="{{url('upload/'.$value->image)}}" alt="" width="100px"></td>
-            <td><a href="edit_product" class="btn btn-primary">Edit</a>
-              <a href="" class="btn btn-danger">delete</a>
+            <td><a href="{{url('/edit_product/'.$value->id)}}" class="btn btn-primary">Edit</a>
+                <a href="{{url('/delete_product/'.$value->id)}}" class="btn btn-danger">delete</a>
             </td>
           </tr>
           @endforeach

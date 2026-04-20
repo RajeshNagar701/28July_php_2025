@@ -16,13 +16,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [AdminLoginController::class, 'index']);
+Route::post('/admin_auth', [AdminLoginController::class, 'admin_auth']);
+
+Route::get('/admin_logout', [AdminLoginController::class, 'admin_logout']);
 
 Route::get('/dashboard', [ProductController::class, 'show']);
+Route::get('/delete_product/{id}', [ProductController::class, 'destroy']);
 
 Route::get('/add_product', [ProductController::class, 'create']);
 Route::post('/add_product', [ProductController::class, 'store']);
 
+Route::get('/edit_product/{id}', [ProductController::class, 'edit']);
+Route::post('/edit_product/{id}', [ProductController::class, 'update']);
 
-Route::get('/edit_product', function () {
-    return view('edit_product');
-});
+//=====================================================================

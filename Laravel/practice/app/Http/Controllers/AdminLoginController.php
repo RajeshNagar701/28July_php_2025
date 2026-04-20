@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\admin_login;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminLoginController extends Controller
 {
@@ -17,6 +19,42 @@ class AdminLoginController extends Controller
          return view('index');
     }
 
+    public function admin_auth(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        $data = admin_login::where('email', $request->email)->first();
+        if ($data) {                    // your value  === enc_value
+            if (!(Hash::check($request->password, $data->password))) {
+                Alert::error('Failed', 'Login Failed Due to Wrong Password');
+                return back();
+            } else {
+
+                    session()->put('admin_id', $data->id);
+                    session()->put('admin_email', $data->email);
+
+                    Alert::success('Success', 'Login Success');
+                    return redirect('/dashboard');
+    
+            }
+        } else {
+            Alert::error('Failed', 'Login Failed Due to Wrong Email');
+            return back();
+        }
+    }
+
+
+    public function admin_logout()
+    {
+        session()->pull('admin_id');
+        session()->pull('admin_email');
+        Alert::success('Success', 'Logout Success');
+        return redirect('/');
+
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -80,6 +118,6 @@ class AdminLoginController extends Controller
      */
     public function destroy(admin_login $admin_login)
     {
-        //
+        
     }
 }

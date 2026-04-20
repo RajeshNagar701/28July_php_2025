@@ -1,1 +1,0 @@
-<h1>Hello i am welcome page</h1>

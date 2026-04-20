@@ -8,7 +8,6 @@
       @if(session('Success'))
       <h3 style="color:green">{{session('Success')}}</h3>
       @endif
-
     </div>
     <form action="{{url('/add_product')}}" method="post" enctype="multipart/form-data">
       @csrf

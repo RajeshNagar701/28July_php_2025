@@ -14,19 +14,26 @@
   </style>
 </head>
 <body>
-
+@include('sweetalert::alert')
 <div class="p-5 bg-primary text-white text-center">
   <h1>Admin Pannel</h1>
+  <h3>Hi ... {{session()->get('admin_email')}}</h3>
 </div>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <div class="container-fluid">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link active" href="dashboard">Dashboard</a>
+        <a class="nav-link active" href="/dashboard">Dashboard</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="add_product">Add Product</a>
+        <a class="nav-link" href="/add_product">Add Product</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/ajax">Laravel Ajax</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/admin_logout">Logout</a>
       </li>
     </ul>
   </div>

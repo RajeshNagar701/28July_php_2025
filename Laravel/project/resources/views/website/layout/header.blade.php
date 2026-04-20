@@ -38,7 +38,7 @@ http://www.templatemo.com/tm-475-holiday
   </head>
   
   <body class="tm-gray-bg">
-
+  
   @include('sweetalert::alert')
   	<!-- Header -->
   	<div class="tm-header">

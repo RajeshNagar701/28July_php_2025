@@ -24,6 +24,6 @@ class pqr
 
 $obj=new pqr();
 $obj->test();
-$obj->sample();
+$obj->sample1();
 
 ?>

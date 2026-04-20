@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\product;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
@@ -50,7 +51,7 @@ class ProductController extends Controller
         $data->image=$filename;
 
         $data->save();
-        return back()->with('Success','Product add success');
+        return back()->with('Success','Product add success');  // flash session
 
     }
 
@@ -72,9 +73,10 @@ class ProductController extends Controller
      * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(product $product)
+    public function edit(product $product,$id)
     {
-        //
+        $data = product::find($id);
+        return view('edit_product', ['data' => $data]);
     }
 
     /**
@@ -84,9 +86,28 @@ class ProductController extends Controller
      * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, product $product)
+    public function update(Request $request, product $product,$id)
     {
-        //
+        $data = product::find($id);
+
+        $data->name=$request->name;
+        $data->price=$request->price;
+        $data->short_description=$request->short_description;
+        $data->long_description=$request->long_description;
+
+        // image upload
+        if($request->hasFile('image'))
+            {
+            $file=$request->file('image');
+            $filename=time().'_img.'.$request->file('image')->getClientOriginalExtension();//1222344544_img.png       
+            $file->move('upload/',$filename);
+            $data->image=$filename;
+            }
+
+        $data->update();
+        Alert::success('Product Updated Success');
+        return redirect('/dashboard');
+
     }
 
     /**
@@ -95,8 +116,12 @@ class ProductController extends Controller
      * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(product $product)
+    public function destroy(product $product,$id)
     {
-        //
+        $data = product::find($id);
+        unlink('upload/' . $data->image);
+        $data->delete();
+        Alert::success('Customer Deleted Success');
+        return back();
     }
 }
