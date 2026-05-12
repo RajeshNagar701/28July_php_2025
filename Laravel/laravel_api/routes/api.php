@@ -19,13 +19,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//http://localhost:8000/api/post_users
+
 Route::get('/users',[userController::class,'index']);  // all data
 Route::get('/users/{id}',[userController::class,'show']); // single data
 Route::get('/search/{key}',[userController::class,'search']);
 
 Route::post('/post_users',[userController::class,'store']); // insert data
 Route::post('/update/{id}',[userController::class,'update']); // update
-Route::put('/updatestatus/{id}',[userController::class,'updatestatus']); // update
 
+Route::put('/updatestatus/{id}',[userController::class,'updatestatus']); // update
 Route::delete('/delete/{id}',[UserController::class,'destroy']); // delete
 Route::post('/login',[userController::class,'login']); // login

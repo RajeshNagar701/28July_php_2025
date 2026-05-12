@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ajaxController;
+use App\Http\Controllers\customerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,5 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ajaxController::class, 'ajax']);
+Route::get('/getstate/{id}', [ajaxController::class, 'getstate']);
+Route::get('/getcity/{id}', [ajaxController::class, 'getcity']);
 
-
+Route::get('/search', [customerController::class, 'index']);
+Route::get('/getcustomer/{key}', [customerController::class, 'getcustomer']);

@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <style>
   .fakeimg {
     height: 200px;
@@ -25,6 +27,10 @@
       <li class="nav-item">
         <a class="nav-link active" href="/dashboard">Dashboard</a>
       </li>
+       <li class="nav-item">
+        <a class="nav-link active" href="/search">Search</a>
+      </li>
+      search
     </ul>
   </div>
 </nav>

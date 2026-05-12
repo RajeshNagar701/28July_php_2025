@@ -22,6 +22,7 @@ class userController extends Controller
         return view('welcome',['users'=>$data]);
     }
 
+	// create api for get data
     public function index()
     {
         $data = user::all();
@@ -91,7 +92,7 @@ class userController extends Controller
 			$data->save();
 			return response()->json([
 			'status'=>200,
-			'message'=>"Regioster Success"
+			'message'=>"Register Success"
 			]);
 		}
     }
